@@ -49,6 +49,13 @@ public:
     virtual Vec3 getVel() { return vel; }
     virtual Vec3 getAccel() { return accel; }
     virtual float getMass() { return mass; }
+    virtual float getOrientation() { return orientation; }
+    virtual float getRotation() { return rotation; }
+    virtual float getAngular() { return angular; }
+    virtual float getMaxSpeed() { return maxSpeed; }
+    virtual float getMaxAcceleration() { return maxAcceleration; }
+    virtual float getMaxRotation() { return maxRotation; }
+    virtual float getMaxAngular() { return maxAngular; }
 
     virtual void setImage(SDL_Surface* image_) { image = image_; }
     virtual SDL_Surface* getImage() { return image; }
