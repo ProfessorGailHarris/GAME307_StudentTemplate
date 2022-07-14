@@ -44,6 +44,7 @@ bool GameManager::OnCreate() {
     float radius = 0.5f;
     float orientation = 0.0f;
     float rotation = 0.0f;
+    float angular = 0.0f;
     // These are not very good defaults, but they will prevent compiler warnings.
     float maxSpeed = 5.0f;
     float maxAcceleration = 10.0f;
@@ -62,6 +63,7 @@ bool GameManager::OnCreate() {
         radius,
         orientation,
         rotation,
+        angular,
         maxSpeed,
         maxAcceleration,
         maxRotation,

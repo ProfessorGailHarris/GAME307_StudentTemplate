@@ -2,6 +2,7 @@
 #define BODY_H
 
 #include "MMath.h"
+#include "VMath.h"
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -16,6 +17,7 @@ protected:
 	float mass;
     float orientation;		// facing this direction
     float rotation;			// rotating at this speed (radians per second?)
+    float angular;          // angular acceleration
     float maxSpeed;
     float maxAcceleration;
     float maxRotation;
@@ -34,6 +36,7 @@ public:
         float radius_,
         float orientation_,
         float rotation_,
+        float angular_,
         float maxSpeed_,
         float maxAcceleration_,
         float maxRotation_,

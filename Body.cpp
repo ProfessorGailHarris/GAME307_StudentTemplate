@@ -9,6 +9,7 @@ Body::Body()
     radius = 0.0f;
     orientation = 0.0f;
     rotation = 0.0f;
+    angular = 0.0f;
     maxSpeed = 0.0f;
     maxAcceleration = 0.0f;
     maxRotation = 0.0f;
@@ -22,7 +23,8 @@ Body::Body(
     float mass_,
     float radius_ = 0.0f,
     float orientation_ = 0.0f,
-    float rotation_ = 0.0f ,
+    float rotation_ = 0.0f,
+    float angular_ = 0.0f,
     // These are not very good defaults, but they will prevent compiler warnings.
     float maxSpeed_ = 5.0f,
     float maxAcceleration_ = 1.0f,
@@ -37,6 +39,7 @@ Body::Body(
     radius = radius_;
     orientation = orientation_;
     rotation = rotation_;
+    angular = angular_;
     maxSpeed = maxSpeed_;
     maxAcceleration = maxAcceleration_;
     maxRotation = maxRotation_;
@@ -56,6 +59,23 @@ void Body::ApplyForce( Vec3 force_ ) {
 void Body::Update( float deltaTime ){
     pos = pos + vel * deltaTime + accel * (0.5f * deltaTime * deltaTime);
     vel = vel + accel * deltaTime;
+    // Update orientation
+    orientation += rotation * deltaTime;
+    rotation += angular * deltaTime;
+
+    // Clip to maxspeed, if speed exceeds max
+    if (VMath::mag(vel) > maxSpeed)
+    {
+        vel = VMath::normalize(vel) * maxSpeed;
+    }
+
+    // Clip to maxrotation, if needed
+    if (rotation > maxRotation) rotation = maxRotation;
+
+    // Could introduce dampening, of velocity and/or rotation, to simulate friction
+    //vel -= 0.05 * vel;
+    //rotation -= 0.05 * rotation;
+
 }
 
 void Body::HandleEvents( const SDL_Event& event )

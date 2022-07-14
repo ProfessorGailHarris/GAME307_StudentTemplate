@@ -1,15 +1,14 @@
 //
-//  PlayerBody.hpp
+//  PlayerBody.h
 //  DemoAI
 //
 //  Created by Gail Harris on 2021-Dec-23.
 //
 
-#ifndef PlayerBody_hpp
-#define PlayerBody_hpp
+#ifndef PLAYERBODY_H
+#define PLAYERBODY_H
 
 #include <stdio.h>
-#include "VMath.h"
 #include "Body.h"
 #include "GameManager.h"
 
@@ -30,6 +29,7 @@ public:
         float radius_,
         float orientation_,
         float rotation_,
+        float angular_,
         float maxSpeed_,
         float maxAcceleration_,
         float maxRotation_,
@@ -43,6 +43,7 @@ public:
         , radius_
         , orientation_
         , rotation_
+        , angular_
         , maxSpeed_
         , maxAcceleration_
         , maxRotation_
@@ -62,4 +63,4 @@ public:
     
 };
 
-#endif /* PlayerBody_hpp */
+#endif /* PLAYERBODY_H */

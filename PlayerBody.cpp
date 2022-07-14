@@ -141,18 +141,9 @@ void PlayerBody::HandleEvents( const SDL_Event& event )
 void PlayerBody::Update( float deltaTime )
 {
     // Update position, call Update from base class
-    // Note that would update velocity too
+    // Note that would update velocity too, and rotation motion
 
     Body::Update( deltaTime );
-
-    // Let's clip the velocity in case acceleration got it going too fast
-    if ( VMath::mag( vel ) > maxSpeed )
-    {
-        vel = VMath::normalize( vel ) * maxSpeed;
-    }
-
-    // Clip to maxrotation, if needed
-    if (rotation > maxRotation) rotation = maxRotation;
 
     // This will ensure player body stops at edges
     float height, width;
