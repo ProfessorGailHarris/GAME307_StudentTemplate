@@ -3,6 +3,7 @@
 
 #include "MMath.h"
 #include "Scene.h"
+#include "Character.h"
 
 
 using namespace MATH;
@@ -14,6 +15,8 @@ private:
 	SDL_Renderer* renderer;
 	Matrix4 projectionMatrix;
     Matrix4     inverseProjection;
+
+	Character* blinky;
 
 public:
 	Scene1(SDL_Window* sdlWindow, GameManager* game_);
