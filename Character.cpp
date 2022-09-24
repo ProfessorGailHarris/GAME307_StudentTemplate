@@ -42,10 +42,7 @@ void Character::Update(float deltaTime)
 	SteeringOutput* steering;
 	steering = new SteeringOutput();
 
-	// set the target for steering; target is used by the steerTo... functions
-	// (often the target is the Player)
-
-	// using the target, calculate and set values in the overall steering output
+	// calculate and set values in the overall steering output
 	steerToSeekPlayer(steering);
 
 	// apply the steering to the equations of motion
@@ -62,6 +59,10 @@ void Character::Update(float deltaTime)
 void Character::steerToSeekPlayer(SteeringOutput* steering)
 {
 	vector<SteeringOutput*> steering_outputs;
+
+	// set the target for steering.
+	// (often the target is the Player)
+
 	PlayerBody* target = scene->game->getPlayer();
 
 	SteeringBehaviour* steering_algorithm = new Seek(body, target);
