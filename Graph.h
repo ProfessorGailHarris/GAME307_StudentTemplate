@@ -3,6 +3,7 @@
 
 #include <vector> // from STL
 #include <map>
+#include <queue>
 #include "Node.h"
 
 using namespace std;
@@ -19,8 +20,9 @@ private:
 	vector< vector< float > > cost;
 
 public:
-	Graph(vector< Node* > nodes_);
+	Graph();
 	~Graph();
+	bool OnCreate(vector< Node* > nodes_);
 	int numNodes();
 	Node* getNode(int label) { return node[label]; }
 	void addWeightConnection(int fromNode, int toNode, float weight);

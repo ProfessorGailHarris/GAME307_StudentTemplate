@@ -36,7 +36,12 @@ bool Scene2::OnCreate()
 	// is responsible for deleting them later!!!!
 
 	//create the graph, an empty graph
-	graph = new Graph(nodes);
+	graph = new Graph();
+	if (!graph->OnCreate(nodes))
+	{
+		printf("graph OnCreate failed. \n");
+		return false;
+	}
 
 	// connections from 0
 	graph->addWeightConnection(
