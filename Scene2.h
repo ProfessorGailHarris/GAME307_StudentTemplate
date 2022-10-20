@@ -4,6 +4,7 @@
 
 #include "Scene.h"
 #include "Graph.h"
+#include "Tile.h"
 
 
 class Scene2 :
@@ -19,6 +20,14 @@ private:
 
 	Graph* graph;
 	vector<Node*> nodes;
+
+	vector<vector <Tile* >> tiles;
+	float tileWidth = 2.5;
+	float tileHeight = 1.5f;
+
+	void createTiles(int rows, int cols);
+	void calculateConnectionWeights();
+
 
 public:
 	Scene2(SDL_Window* sdlWindow, GameManager* game_);
