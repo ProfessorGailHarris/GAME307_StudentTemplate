@@ -8,6 +8,8 @@ Scene2::Scene2(
 	window = sdlWindow_;
 	game = game_;
 	renderer = SDL_GetRenderer(window);
+	graph = NULL;
+	nodes = {};
 
 }
 
@@ -66,7 +68,7 @@ void Scene2::createTiles(int rows, int cols)
 	for (float y = 0.5f * tileHeight; y < yAxis; y += tileHeight) 
 	{
 		//do stuff for a row, where y stays constant
-		for (float x = 0.5 * tileWidth; x < xAxis; x += tileWidth)
+		for (float x = 0.5f * tileWidth; x < xAxis; x += tileWidth)
 		{
 			n = new Node(label, Vec3(x, y, 0.0f));
 			t = new Tile(n, tileWidth, tileHeight, this);
@@ -92,7 +94,7 @@ void Scene2::calculateConnectionWeights()
 		for (int j = 0; j < cols; j++)
 		{
 			//                 i+1,j
-			//   i, j-1          i,j        i, j+1
+			//   i,j-1           i,j        i,j+1
 			//                 i-1,j
 
 			int from = tiles[i][j]->getNode()->getLabel();
@@ -113,13 +115,13 @@ void Scene2::calculateConnectionWeights()
 			if (i < rows - 1)
 			{
 				int to = tiles[i+1][j]->getNode()->getLabel();
-				graph->addWeightConnection(from, to, tileWidth);
+				graph->addWeightConnection(from, to, tileHeight);
 			}
 			//below is i-1,j
 			if (i > 0)
 			{
 				int to = tiles[i-1][j]->getNode()->getLabel();
-				graph->addWeightConnection(from, to, tileWidth);
+				graph->addWeightConnection(from, to, tileHeight);
 			}
 
 		}

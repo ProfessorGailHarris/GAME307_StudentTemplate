@@ -11,8 +11,8 @@ void Tile::Render()
 
 	// node position is at center of tile
 	Vec3 pos = node->getPos();
-	topLeftWorld = Vec3(pos.x - 0.5f * width, pos.y + 0.5 * height, 0.0f);
-	bottomRightWorld = Vec3(pos.x + 0.5f * width, pos.y - 0.5 * height, 0.0f);
+	topLeftWorld = Vec3(pos.x - 0.5f * width, pos.y + 0.5f * height, 0.0f);
+	bottomRightWorld = Vec3(pos.x + 0.5f * width, pos.y - 0.5f * height, 0.0f);
 
 	topLeftScreenCoords = scene->getProjectionMatrix() * topLeftWorld;
 	bottomRightScreenCoords = scene->getProjectionMatrix() * bottomRightWorld;
