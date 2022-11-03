@@ -69,6 +69,27 @@ vector<int> Graph::neighbours(int fromNode)
 	return result;
 }
 
+// From https://github.com/ProfessorGailHarris/PriorityQueueUsingSTL
+struct NodeAndPriority {
+	int node;
+	float priority;
+	int getNode() { return node; }
+	NodeAndPriority(int node_, float priority_)
+	{
+		node = node_;
+		priority = priority_;
+	}
+};
+
+struct ComparePriority
+{
+	bool operator()(NodeAndPriority const& lhs, NodeAndPriority const& rhs)
+	{
+		// make it a min queue
+		return lhs.priority > rhs.priority;
+	}
+};
+
 vector<int> Graph::Dijkstra(
 	int startNode, int goalNode
 )
@@ -76,7 +97,7 @@ vector<int> Graph::Dijkstra(
 	// declare helper variables
 	float new_cost;
 	int		current;
-/*
+
 	// declare current NodeAndPriority
 	NodeAndPriority* currentNodeAndPriority;
 	currentNodeAndPriority = new NodeAndPriority(startNode, 0.0f);
@@ -84,7 +105,7 @@ vector<int> Graph::Dijkstra(
 	// set up priority queue for frontier of nodes
 	priority_queue< NodeAndPriority, deque<NodeAndPriority>, ComparePriority > frontier;
 	frontier.push(*currentNodeAndPriority);
-*/
+
 	// track solution path
 	vector<int> came_from;
 	came_from.resize(numNodes());
