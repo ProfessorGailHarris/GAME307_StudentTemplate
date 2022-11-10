@@ -4,6 +4,11 @@ bool Character::OnCreate(Scene* scene_)
 {
 	scene = scene_;
 
+	DecisionTreeNode* trueNode = new Action();
+	DecisionTreeNode* falseNode = new Action();
+
+	decider = new PlayerInRangeDecision(this, trueNode, falseNode);
+
 	// Configure and instantiate the body to use for the demo
 	if (!body)
 	{
@@ -54,6 +59,8 @@ void Character::Update(float deltaTime)
 	{
 		delete steering;
 	}
+
+	decider->makeDecision();
 }
 
 void Character::steerToSeekPlayer(SteeringOutput* steering)

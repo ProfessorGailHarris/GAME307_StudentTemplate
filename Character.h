@@ -7,6 +7,14 @@
 #include "KinematicBody.h"
 #include "Seek.h"
 
+#include "Decision.h"		//which includes DecisionTreeNode.h
+#include "PlayerInRangeDecision.h"
+#include "Action.h"
+
+
+class DecisionTreeNode;
+
+
 using namespace std;
 
 class Character
@@ -14,6 +22,8 @@ class Character
 private:
 	class KinematicBody* body;
 	class Scene* scene;
+
+	DecisionTreeNode* decider;
 
 public:
 	Character()
@@ -38,6 +48,9 @@ public:
 	void HandleEvents(const SDL_Event& event);
 	void render(float scale = 1.0f);
 	void steerToSeekPlayer(SteeringOutput* steering);
+
+	Vec3 getPos() { return body->getPos(); }
+	Vec3 getPlayerPos() { return scene->game->getPlayer()->getPos(); }
 };
 
 #endif
