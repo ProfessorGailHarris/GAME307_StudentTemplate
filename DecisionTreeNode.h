@@ -14,7 +14,7 @@ protected:
 	Character* owner;
 
 public:
-	virtual void makeDecision() = 0;
+	virtual DecisionTreeNode* makeDecision() = 0;
 };
 
 #endif

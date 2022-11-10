@@ -1,7 +1,7 @@
 #include "Action.h"
 
-void Action::makeDecision()
+DecisionTreeNode* Action::makeDecision()
 {
 	//do something, maybe
-	return;
+	return this;
 }

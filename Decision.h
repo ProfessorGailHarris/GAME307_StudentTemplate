@@ -10,7 +10,7 @@ protected:
     DecisionTreeNode* falseNode;
 
 public:
-    virtual void makeDecision();
+    virtual DecisionTreeNode* makeDecision();
     virtual bool testValue();
     virtual DecisionTreeNode* getbranch();
 

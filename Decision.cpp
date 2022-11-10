@@ -17,9 +17,8 @@ bool Decision::testValue()
 	return false;
 }
 
-void Decision::makeDecision()
+DecisionTreeNode* Decision::makeDecision()
 {
-//	std::cout << "make decision";
 	DecisionTreeNode *branch = getbranch();
-	branch->makeDecision();
+	return branch->makeDecision();
 }

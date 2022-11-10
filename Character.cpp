@@ -4,8 +4,8 @@ bool Character::OnCreate(Scene* scene_)
 {
 	scene = scene_;
 
-	DecisionTreeNode* trueNode = new Action();
-	DecisionTreeNode* falseNode = new Action();
+	DecisionTreeNode* trueNode = new Action(DO_NOTHING);
+	DecisionTreeNode* falseNode = new Action(SEEK);
 
 	decider = new PlayerInRangeDecision(this, trueNode, falseNode);
 
@@ -48,7 +48,16 @@ void Character::Update(float deltaTime)
 	steering = new SteeringOutput();
 
 	// calculate and set values in the overall steering output
-	steerToSeekPlayer(steering);
+
+	DecisionTreeNode* action = decider->makeDecision();
+	Action* a = static_cast<Action*>(action);
+	switch (a->getValue()) {
+	case SEEK:
+		steerToSeekPlayer(steering);
+		break;
+	case DO_NOTHING:
+		break;
+	}
 
 	// apply the steering to the equations of motion
 	body->Update(deltaTime, steering);
@@ -60,7 +69,6 @@ void Character::Update(float deltaTime)
 		delete steering;
 	}
 
-	decider->makeDecision();
 }
 
 void Character::steerToSeekPlayer(SteeringOutput* steering)
