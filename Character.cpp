@@ -36,6 +36,30 @@ bool Character::OnCreate(Scene* scene_)
 	return true;
 }
 
+bool Character::readStateMachineXML(string filename)
+{
+	stateMachine = new StateMachine(this);
+
+	State* seekPlayer = new State(STATE::SEEK);
+	State* doNothing = new State(STATE::DO_NOTHING);
+
+	Condition* ifInRange = new ConditionInRange(this);
+
+	doNothing->addTransition(
+		new Transition(ifInRange, seekPlayer)
+	);
+
+	Condition* ifOutOfRange = new ConditionOutOfRange(this);
+
+	seekPlayer->addTransition(
+		new Transition(ifOutOfRange, doNothing)
+	);
+
+	stateMachine->setInitialState(doNothing);
+
+	return true;
+}
+
 bool Character::readDecisionTreeXML(string filename)
 {
 	// let's pretend the XML parsing produced these instances
@@ -66,6 +90,18 @@ void Character::Update(float deltaTime)
 			steerToSeekPlayer(steering);
 			break;
 		case ACTION_SET::DO_NOTHING:
+			break;
+		}
+	}
+	if (stateMachine)
+	{
+		stateMachine->update();
+		switch (stateMachine->getCurrentStateName())
+		{
+		case STATE::SEEK:
+			steerToSeekPlayer(steering);
+			break;
+		case STATE::DO_NOTHING:
 			break;
 		}
 	}

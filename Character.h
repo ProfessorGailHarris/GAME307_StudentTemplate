@@ -14,6 +14,7 @@
 
 class DecisionTreeNode;
 
+#include "StateMachine.h"
 
 using namespace std;
 
@@ -24,12 +25,15 @@ private:
 	class Scene* scene;
 
 	DecisionTreeNode* decider;
+	StateMachine* stateMachine;
 
 public:
 	Character()
 	{
 		body = NULL;
 		scene = NULL;
+		decider = NULL;
+		stateMachine = NULL;
 	};
 	// TODO add constructor that takes parameters for the body
 	~Character() 
@@ -53,6 +57,7 @@ public:
 	Vec3 getPlayerPos() { return scene->game->getPlayer()->getPos(); }
 
 	bool readDecisionTreeXML(string filename);
+	bool readStateMachineXML(string filename);
 };
 
 #endif
