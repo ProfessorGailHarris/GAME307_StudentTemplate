@@ -51,6 +51,8 @@ public:
 
 	Vec3 getPos() { return body->getPos(); }
 	Vec3 getPlayerPos() { return scene->game->getPlayer()->getPos(); }
+
+	bool readDecisionTreeXML(string filename);
 };
 
 #endif

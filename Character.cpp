@@ -4,11 +4,6 @@ bool Character::OnCreate(Scene* scene_)
 {
 	scene = scene_;
 
-	DecisionTreeNode* trueNode = new Action(DO_NOTHING);
-	DecisionTreeNode* falseNode = new Action(SEEK);
-
-	decider = new PlayerInRangeDecision(this, trueNode, falseNode);
-
 	// Configure and instantiate the body to use for the demo
 	if (!body)
 	{
@@ -41,6 +36,20 @@ bool Character::OnCreate(Scene* scene_)
 	return true;
 }
 
+bool Character::readDecisionTreeXML(string filename)
+{
+	// let's pretend the XML parsing produced these instances
+
+	if (filename == "playerinrange.xml")
+	{
+		DecisionTreeNode* falseNode = new Action(ACTION_SET::DO_NOTHING);
+		DecisionTreeNode* trueNode = new Action(ACTION_SET::SEEK);
+
+		decider = new PlayerInRangeDecision(this, trueNode, falseNode);
+	}
+	return true;
+}
+
 void Character::Update(float deltaTime)
 {
 	// create a new overall steering output
@@ -48,15 +57,17 @@ void Character::Update(float deltaTime)
 	steering = new SteeringOutput();
 
 	// calculate and set values in the overall steering output
-
-	DecisionTreeNode* action = decider->makeDecision();
-	Action* a = static_cast<Action*>(action);
-	switch (a->getValue()) {
-	case SEEK:
-		steerToSeekPlayer(steering);
-		break;
-	case DO_NOTHING:
-		break;
+	if (decider)
+	{
+		DecisionTreeNode* action = decider->makeDecision();
+		Action* a = dynamic_cast<Action*>(action);
+		switch (a->getValue()) {
+		case ACTION_SET::SEEK:
+			steerToSeekPlayer(steering);
+			break;
+		case ACTION_SET::DO_NOTHING:
+			break;
+		}
 	}
 
 	// apply the steering to the equations of motion

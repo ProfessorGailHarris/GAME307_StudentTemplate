@@ -61,6 +61,7 @@ bool Scene1::OnCreate() {
 		blinky->setTexture(texture);
 		SDL_FreeSurface(image);
 	}
+	blinky->readDecisionTreeXML("playerinrange.xml");
 
 	//myNPC = new StaticBody();
 	Vec3 position = Vec3();
