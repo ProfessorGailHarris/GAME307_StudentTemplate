@@ -20,6 +20,18 @@ OBJS += Steering/SteeringOutput.o
 OBJS += Graph.o
 OBJS += Scene2.o
 OBJS += Tile.o
+OBJS += Node.o
+OBJS += DecisionTreeNode.o
+OBJS += Decision.o
+OBJS += Action.o
+OBJS += PlayerInRangeDecision.o
+OBJS += Condition.o
+OBJS += ConditionInRange.o
+OBJS += ConditionOutOfRange.o
+OBJS += DecisionTreeNode.o
+OBJS += StateMachine.o
+OBJS += State.o
+OBJS += Transition.o
 
 SDLCFG := sdl2-config
 
