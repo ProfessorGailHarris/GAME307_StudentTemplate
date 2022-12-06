@@ -25,6 +25,7 @@ private:
 	class Scene *currentScene;
     class PlayerBody *player;
     Uint32 changeSceneEventType; // event type number for user defined events
+	bool launched = true;
 
 public:
 	GameManager();
@@ -41,6 +42,7 @@ public:
 	void RenderPlayer(float scale = 1.0f);
 	void Run();
     void LoadScene( int i );
+	void handleEvents();
     bool ValidateCurrentScene();
     
 };

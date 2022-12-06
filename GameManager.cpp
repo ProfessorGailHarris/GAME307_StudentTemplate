@@ -96,64 +96,71 @@ bool GameManager::OnCreate() {
 
 /// Here's the whole game loop
 void GameManager::Run() {
-    SDL_Event event;
     
 	timer->Start();
     // control if current scene's update() is called each tick
-    bool launched = false;
     
 	while (isRunning) {
-            
-        // Let's add mouse movement and position
-        // https://wiki.libsdl.org/SDL_GetMouseState
 
-        SDL_PumpEvents();  // make sure we have the latest mouse state.
-
-        //https://www.youtube.com/watch?v=SYrRMr4BaD4&list=PLM7LHX-clszBIGsrh7_3B2Pi74AhMpKhj&index=3
-        while( SDL_PollEvent(&event) )
-        {
-            if( event.type == SDL_QUIT )
-            {
-                isRunning = false;
-            }
-            else if( event.type == SDL_KEYDOWN )
-            {
-                switch ( event.key.keysym.scancode )
-                {
-                    case SDL_SCANCODE_ESCAPE:
-                        isRunning = false;
-                        break;
-                    case SDL_SCANCODE_Q:
-                        isRunning = false;
-                        break;
-                    case SDL_SCANCODE_DELETE:
-                        isRunning = false;
-                        break;
-                    case SDL_SCANCODE_L:
-                        //toggle launched with L key)
-                        launched = !launched;
-                        break;
-                    case SDL_SCANCODE_1:
-                        launched = false;
-                        LoadScene( 1 );
-                        break;
-                    default:
-                        break;
-                }
-            }
-            currentScene->HandleEvents( event );
-        }
+        handleEvents();
         
 		timer->UpdateFrameTicks();
         if ( launched )
         {
-             currentScene->Update(timer->GetDeltaTime());
+            // launched boolean just helps user stop and start action
+            // and useful for debugging and teaching
+            currentScene->Update(timer->GetDeltaTime());
         }
 		currentScene->Render();
 
 		/// Keep the event loop running at a proper rate
 		SDL_Delay(timer->GetSleepTime(60)); ///60 frames per sec
 	}
+}
+
+void GameManager::handleEvents()
+{
+    SDL_Event event;
+
+    // Let's add mouse movement and position
+    // https://wiki.libsdl.org/SDL_GetMouseState
+
+    SDL_PumpEvents();  // make sure we have the latest mouse state.
+
+    //https://www.youtube.com/watch?v=SYrRMr4BaD4&list=PLM7LHX-clszBIGsrh7_3B2Pi74AhMpKhj&index=3
+    while (SDL_PollEvent(&event))
+    {
+        if (event.type == SDL_QUIT)
+        {
+            isRunning = false;
+        }
+        else if (event.type == SDL_KEYDOWN)
+        {
+            switch (event.key.keysym.scancode)
+            {
+            case SDL_SCANCODE_ESCAPE:
+                isRunning = false;
+                break;
+            case SDL_SCANCODE_Q:
+                isRunning = false;
+                break;
+            case SDL_SCANCODE_DELETE:
+                isRunning = false;
+                break;
+            case SDL_SCANCODE_L:
+                //toggle launched with L key)
+                launched = !launched;
+                break;
+            case SDL_SCANCODE_1:
+                launched = true;
+                LoadScene(1);
+                break;
+            default:
+                break;
+            }
+        }
+        currentScene->HandleEvents(event);
+    }
 }
 
 GameManager::~GameManager() {}
@@ -164,9 +171,11 @@ void GameManager::OnDestroy(){
 	if (currentScene) delete currentScene;
 }
 
-float GameManager::getSceneHeight() { return currentScene->getyAxis(); }
+float GameManager::getSceneHeight() 
+{ return currentScene->getyAxis(); }
 
-float GameManager::getSceneWidth() { return currentScene->getxAxis(); }
+float GameManager::getSceneWidth() 
+{ return currentScene->getxAxis(); }
 
 Matrix4 GameManager::getProjectionMatrix() 
 { return currentScene->getProjectionMatrix(); }
