@@ -95,14 +95,33 @@ bool GameManager::OnCreate() {
 
 /// Here's the whole game loop
 void GameManager::Run() {
-    SDL_Event event;
     
 	timer->Start();
     // control if current scene's update() is called each tick
-    bool launched = false;
     
-	while (isRunning) {
+	while (isRunning)
+	{
             
+		handleEvents();
+        
+		timer->UpdateFrameTicks();
+		if ( launched )
+		{
+		    currentScene->Update(timer->GetDeltaTime());
+		    // launched boolean just helps user stop and start action
+		    // and useful for debugging and teaching
+		}
+		currentScene->Render();
+
+		/// Keep the event loop running at a proper rate
+		SDL_Delay(timer->GetSleepTime(60)); ///60 frames per sec
+	}
+}
+
+void GameManager::handleEvents()
+{
+	SDL_Event event;
+
         // Let's add mouse movement and position
         // https://wiki.libsdl.org/SDL_GetMouseState
 
@@ -133,7 +152,6 @@ void GameManager::Run() {
                         launched = !launched;
                         break;
                     case SDL_SCANCODE_1:
-                        launched = false;
                         LoadScene( 1 );
                         break;
                     default:
@@ -142,17 +160,6 @@ void GameManager::Run() {
             }
             currentScene->HandleEvents( event );
         }
-        
-		timer->UpdateFrameTicks();
-        if ( launched )
-        {
-             currentScene->Update(timer->GetDeltaTime());
-        }
-		currentScene->Render();
-
-		/// Keep the event loop running at a proper rate
-		SDL_Delay(timer->GetSleepTime(60)); ///60 frames per sec
-	}
 }
 
 GameManager::~GameManager() {}
@@ -163,9 +170,11 @@ void GameManager::OnDestroy(){
 	if (currentScene) delete currentScene;
 }
 
-float GameManager::getSceneHeight() { return currentScene->getyAxis(); }
+float GameManager::getSceneHeight()
+{ return currentScene->getyAxis(); }
 
-float GameManager::getSceneWidth() { return currentScene->getxAxis(); }
+float GameManager::getSceneWidth()
+{ return currentScene->getxAxis(); }
 
 Matrix4 GameManager::getProjectionMatrix() 
 { return currentScene->getProjectionMatrix(); }
@@ -202,6 +211,7 @@ void GameManager::LoadScene( int i )
     {
         isRunning = false;
     }
+    launched = true;
 }
 
 bool GameManager::ValidateCurrentScene()
