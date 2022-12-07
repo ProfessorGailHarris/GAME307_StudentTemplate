@@ -6,6 +6,8 @@
 
 GAME307_StudentTemplate.vcxproj
 GAME307_StudentTemplate.vcxproj.filters
+*.o
+main
 
 # User-specific files
 *.rsuser
