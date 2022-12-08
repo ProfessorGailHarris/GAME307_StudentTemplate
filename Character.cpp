@@ -36,6 +36,25 @@ bool Character::OnCreate(Scene* scene_)
 	return true;
 }
 
+bool Character::setTextureWith(string file)
+{
+	SDL_Surface* image = IMG_Load(file.c_str());
+	if (image == nullptr) {
+		std::cerr << "Can't open the image" << std::endl;
+		return false;
+	}
+	SDL_Window* window = scene->getWindow();
+	SDL_Renderer* renderer = SDL_GetRenderer(window);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
+	if (!texture) 
+	{
+		std::cerr << "Can't create texture" << std::endl;
+		return false;
+	}
+	body->setTexture(texture);
+}
+
+
 void Character::Update(float deltaTime)
 {
 	// create a new overall steering output

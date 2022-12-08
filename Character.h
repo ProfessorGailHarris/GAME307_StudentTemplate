@@ -20,19 +20,15 @@ public:
 		body = NULL;
 		scene = NULL;
 	};
-	// TODO add constructor that takes parameters for the body
-	~Character() 
+
+	~Character()
 	{
 		if (body) delete body;
 	};
+
 	bool OnCreate(Scene* scene_);
 	void OnDestroy() {};
-	
-	void setTexture(SDL_Texture* texture_) 
-	{
-		body->setTexture(texture_); 
-	}
-
+	bool setTextureWith(string file);
 	void Update(float time);
 	void HandleEvents(const SDL_Event& event);
 	void render(float scale = 1.0f);

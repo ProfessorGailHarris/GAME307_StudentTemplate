@@ -45,20 +45,9 @@ bool Scene1::OnCreate() {
 	// Set up characters, choose good values for the constructor
 	// or use the defaults, like this
 	blinky = new Character();
-	if (!blinky->OnCreate(this))
+	if (!blinky->OnCreate(this) || !blinky->setTextureWith("Blinky.png") )
 	{
 		return false;
-	}
-
-	image = IMG_Load("Blinky.png");
-	texture = SDL_CreateTextureFromSurface(renderer, image);
-	if (image == nullptr) {
-		std::cerr << "Can't open the image" << std::endl;
-		return false;
-	}
-	else {
-		blinky->setTexture(texture);
-		SDL_FreeSurface(image);
 	}
 
 	// end of character set ups
@@ -70,7 +59,7 @@ void Scene1::OnDestroy() {}
 
 void Scene1::Update(const float deltaTime) {
 	// Calculate and apply any steering for npc's
-	blinky->Update(deltaTime);
+	//blinky->Update(deltaTime);
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
@@ -81,7 +70,7 @@ void Scene1::Render() {
 	SDL_RenderClear(renderer);
 
 	// render any npc's
-	blinky->render(0.15f);
+	//blinky->render(0.15f);
 
 	// render the player
 	game->RenderPlayer(0.10f);
