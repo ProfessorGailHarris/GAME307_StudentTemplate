@@ -4,8 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 #
 
-GAME307_StudentTemplate.vcxproj
-GAME307_StudentTemplate.vcxproj.filters
+#GAME307_StudentTemplate.vcxproj
+#GAME307_StudentTemplate.vcxproj.filters
 main
 *.o
 
