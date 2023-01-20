@@ -4,6 +4,8 @@
 #include "MMath.h"
 #include "Scene.h"
 #include "Character.h"
+#include "StaticBody.h"
+#include "KinematicSeek.h"
 
 
 using namespace MATH;
@@ -17,6 +19,8 @@ private:
     Matrix4     inverseProjection;
 
 	Character* blinky;
+
+	StaticBody* myNPC;
 
 public:
 	Scene1(SDL_Window* sdlWindow, GameManager* game_);
