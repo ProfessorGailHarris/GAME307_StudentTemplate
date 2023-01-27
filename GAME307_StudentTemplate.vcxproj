@@ -141,6 +141,8 @@
     <ClCompile Include="MMath.cpp" />
     <ClCompile Include="PlayerBody.cpp" />
     <ClCompile Include="Scene1.cpp" />
+    <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="SteeringBehaviour.cpp" />
     <ClCompile Include="Steering\KinematicBody.cpp" />
     <ClCompile Include="Steering\KinematicSteeringOutput.cpp" />
     <ClCompile Include="Steering\StaticBody.cpp" />
@@ -160,7 +162,9 @@
     <ClInclude Include="PlayerBody.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
+    <ClInclude Include="Seek.h" />
     <ClInclude Include="StaticBody.h" />
+    <ClInclude Include="SteeringBehaviour.h" />
     <ClInclude Include="Steering\KinematicBody.h" />
     <ClInclude Include="Steering\SteeringOutput.h" />
     <ClInclude Include="Timer.h" />

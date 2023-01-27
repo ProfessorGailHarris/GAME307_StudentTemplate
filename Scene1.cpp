@@ -109,7 +109,8 @@ void Scene1::Update(const float deltaTime) {
 
 	// calculate KinematicSteeringOutput
 
-	myNPC->Update(deltaTime, steering);
+	//myNPC->Update(deltaTime, steering);
+	blinky->Update(deltaTime);
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
@@ -151,12 +152,12 @@ void Scene1::Render() {
     // Convert character orientation from radians to degrees.
     float orientationDegrees = orientation * 180.0f / M_PI ;
 
-    SDL_RenderCopyEx( renderer, myNPC->getTexture(), nullptr, &square,
-        orientationDegrees, nullptr, SDL_FLIP_NONE );
+    //SDL_RenderCopyEx( renderer, myNPC->getTexture(), nullptr, &square,
+    //    orientationDegrees, nullptr, SDL_FLIP_NONE );
 
 
 
-	//blinky->render(0.15f);
+	blinky->render(0.15f);
 
 	// render the player
 	game->RenderPlayer(0.10f);
