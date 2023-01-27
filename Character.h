@@ -15,6 +15,8 @@ private:
 	class KinematicBody* body;
 	class Scene* scene;
 
+	void steerToSeekPlayer(SteeringOutput* steering);
+
 public:
 	Character()
 	{
