@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PlayerBody.cpp" />
+    <ClCompile Include="Scene1.cpp" />
+    <ClCompile Include="Steering\KinematicBody.cpp" />
+    <ClCompile Include="Steering\SteeringOutput.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="MMath.cpp">
+      <Filter>MATH</Filter>
+    </ClCompile>
+    <ClCompile Include="VMath.cpp">
+      <Filter>MATH</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering\StaticBody.cpp" />
+    <ClCompile Include="Steering\KinematicSteeringOutput.cpp" />
+    <ClCompile Include="KinematicSeek.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Body.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="PlayerBody.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Scene1.h" />
+    <ClInclude Include="Steering\KinematicBody.h" />
+    <ClInclude Include="Steering\SteeringOutput.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="Matrix.h">
+      <Filter>MATH</Filter>
+    </ClInclude>
+    <ClInclude Include="MMath.h">
+      <Filter>MATH</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>MATH</Filter>
+    </ClInclude>
+    <ClInclude Include="VMath.h">
+      <Filter>MATH</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticBody.h" />
+    <ClInclude Include="KinematicSteeringOutput.h" />
+    <ClInclude Include="KinematicSeek.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="MATH">
+      <UniqueIdentifier>{3feabb05-53b9-4cc5-a9a5-512821de6fef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

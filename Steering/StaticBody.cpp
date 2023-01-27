@@ -10,6 +10,8 @@ void StaticBody::Update(
 
 	if (steering == NULL)
 	{
+		vel = Vec3();
+		rotation = 0.0f;
 		return;
 	}
 	//then ... deal with steering
