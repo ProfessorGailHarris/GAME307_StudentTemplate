@@ -22,6 +22,9 @@
     <ClCompile Include="Steering\SteeringBehaviour.cpp" />
     <ClCompile Include="Steering\Seek.cpp" />
     <ClCompile Include="Steering\KinematicSeek.cpp" />
+    <ClCompile Include="Scene2.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Graph.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -51,6 +54,9 @@
     <ClInclude Include="Steering\SteeringBehaviour.h" />
     <ClInclude Include="Steering\Seek.h" />
     <ClInclude Include="Steering\KinematicSeek.h" />
+    <ClInclude Include="Scene2.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Graph.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MATH">
