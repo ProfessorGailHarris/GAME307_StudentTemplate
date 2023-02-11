@@ -155,6 +155,9 @@ void GameManager::handleEvents()
                     case SDL_SCANCODE_1:
                         LoadScene( 1 );
                         break;
+                    case SDL_SCANCODE_2:
+                        LoadScene( 2 );
+                        break;
                     default:
                         break;
                 }
@@ -202,6 +205,9 @@ void GameManager::LoadScene( int i )
     {
         case 1:
             currentScene = new Scene1( windowPtr->GetSDL_Window(), this);
+            break;
+        case 2:
+            currentScene = new Scene2( windowPtr->GetSDL_Window(), this);
             break;
         default:
             currentScene = new Scene1( windowPtr->GetSDL_Window(), this );

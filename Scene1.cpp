@@ -81,6 +81,7 @@ bool Scene1::OnCreate() {
 	blinky = new Character();
 	if (!blinky->OnCreate(this) || !blinky->setTextureWith("Blinky.png") )
 	{
+		std::cerr << "Can't open blinky texture" << std::endl;
 		return false;
 	}
 
