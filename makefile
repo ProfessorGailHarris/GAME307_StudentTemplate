@@ -11,15 +11,17 @@ OBJS += Timer.o
 OBJS += VMath.o
 OBJS += Window.o
 OBJS += Steering/KinematicBody.o
+OBJS += Steering/KinematicSeek.o
 OBJS += Steering/SteeringOutput.o
 
-#OBJS += Graph.o
-#OBJS += Scene2.o
+OBJS += Graph.o
+OBJS += Scene2.o
+OBJS += Node.o
 #OBJS += Tile.o
-#OBJS += KinematicSteeringOutput.o
-#OBJS += SteeringBehaviour.o
-#OBJS += StaticBody.o
-#OBJS += Seek.o
+OBJS += Steering/KinematicSteeringOutput.o
+OBJS += Steering/SteeringBehaviour.o
+OBJS += Steering/StaticBody.o
+OBJS += Steering/Seek.o
 
 SDLCFG := sdl2-config
 
