@@ -68,6 +68,9 @@ bool Scene2::OnCreate()
 		cout << "node " << nodeLabel << endl;
 	}
 
+	// call dijsktra
+	vector<int> path = graph->Dijkstra(0, 4);
+
 	return true;
 }
 
