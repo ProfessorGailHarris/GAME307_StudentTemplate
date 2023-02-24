@@ -11,14 +11,38 @@ Scene2::Scene2(SDL_Window* sdlWindow, GameManager* game_)
 	yAxis = 15.0f;
 }
 
-void Scene2::createTiles()
+void Scene2::createTiles(int rows, int cols)
 {
+	tiles.resize(rows);
+	for ( int i=0; i < rows; i++)
+	{
+		tiles[i].resize(cols);
+	}
 
-	Vec3 tilePos = Vec3(13.8f, 8.2f, 0.0f);
-	Node* n = new Node(8);
-	singleTile = new Tile(n, tilePos, tileWidth, tileHeight, this);
+	Node* n;
+	Tile* t;
+	int i, j, label;
 
-	cout << "node label " << singleTile->getNode()->getLabel() << endl;
+	i = 0;
+	j = 0;
+	label = 0;
+
+	for (float y = 0.5f * tileHeight; y < yAxis; y += tileHeight)
+	{
+		// do stuff for a row, where y stays constant
+		for (float x = 0.5f*tileWidth; x < xAxis; x += tileWidth)
+		{
+			// create tiles and nodes
+			n = new Node(label);
+			Vec3 tilePos = Vec3(x, y, 0.0f);
+			t = new Tile(n, tilePos, tileWidth, tileHeight, this);
+			tiles[i][j] = t;
+			j++;
+			label++;
+		}
+		j = 0;
+		i++;
+	}
 
 }
 
@@ -91,11 +115,10 @@ bool Scene2::OnCreate()
 	}
 
 
-	createTiles();
-	if (!singleTile) {
-		cerr << "Tile creation failed" << endl;
-		return false;
-	}
+	// calculate rows and cols
+	int cols = ceil( xAxis / tileWidth );
+	int rows = ceil( yAxis / tileHeight );
+	createTiles(rows, cols);
 
 	// call dijsktra
 	vector<int> path = graph->Dijkstra(0, 4);
@@ -113,7 +136,14 @@ void Scene2::Render()
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	SDL_RenderClear(renderer);
 
-	singleTile->Render();
+	// render all tiles
+	for (int i = 0; i < tiles.size(); i++)
+	{
+		for (int j = 0; j < tiles[i].size(); j++)
+		{
+			tiles[i][j]->Render();
+		}
+	}
 
 	SDL_RenderPresent(renderer);
 }
