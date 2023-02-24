@@ -17,6 +17,8 @@ private:
 	Matrix4     inverseProjection;
 	Graph* graph;
 	vector<Node*> sceneNodes;
+	float tileWidth;
+	float tileHeight;
 	Tile* singleTile;
 
 	void createTiles();

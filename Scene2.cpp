@@ -14,12 +14,18 @@ Scene2::Scene2(SDL_Window* sdlWindow, GameManager* game_)
 void Scene2::createTiles()
 {
 
-	singleTile = new Tile(2.0f, 1.0f, this);
+	Vec3 tilePos = Vec3(13.8f, 8.2f, 0.0f);
+	Node* n = new Node(8);
+	singleTile = new Tile(n, tilePos, tileWidth, tileHeight, this);
+
+	cout << "node label " << singleTile->getNode()->getLabel() << endl;
 
 }
 
 bool Scene2::OnCreate()
 {
+	tileWidth = 5.0f;
+	tileHeight = 3.0f;
 	int w, h;
 	SDL_GetWindowSize(window,&w,&h);
 	
@@ -86,6 +92,10 @@ bool Scene2::OnCreate()
 
 
 	createTiles();
+	if (!singleTile) {
+		cerr << "Tile creation failed" << endl;
+		return false;
+	}
 
 	// call dijsktra
 	vector<int> path = graph->Dijkstra(0, 4);
