@@ -34,6 +34,7 @@ void Scene2::createTiles(int rows, int cols)
 		{
 			// create tiles and nodes
 			n = new Node(label);
+			sceneNodes.push_back(n);
 			Vec3 tilePos = Vec3(x, y, 0.0f);
 			t = new Tile(n, tilePos, tileWidth, tileHeight, this);
 			tiles[i][j] = t;
@@ -44,6 +45,55 @@ void Scene2::createTiles(int rows, int cols)
 		i++;
 	}
 
+}
+
+void Scene2::calculateConnectionWeights()
+{
+	int rows = tiles.size();
+	int cols = tiles[0].size();
+
+	for (int i=0; i < rows; i++)
+	{
+		for (int j=0; j < cols; j++)
+		{
+
+		//               i+1, j
+		//    i,j-1        i, j          i, j+1
+		//               i-1, j
+
+		Tile* fromTile = tiles[i][j];
+		int from = fromTile->getNode()->getLabel();
+
+		// left is i, j-1
+		if (j>0)
+		{
+			int to = tiles[i][j-1]->getNode()->getLabel();
+			graph->addWeightConnection(from, to, tileWidth);
+		}
+
+		// right is i, j+1
+		if (j < cols - 1)
+		{
+			int to = tiles[i][j+1]->getNode()->getLabel();
+			graph->addWeightConnection(from, to, tileWidth);
+		}
+
+		// above is i+1, j
+		if ( i < rows - 1 )
+		{
+			int to = tiles[i+1][j]->getNode()->getLabel();
+			graph->addWeightConnection(from, to, tileHeight);
+		}
+
+		// below is i-1, j
+		if ( i > 0 )
+		{
+			int to = tiles[i-1][j]->getNode()->getLabel();
+			graph->addWeightConnection(from, to, tileHeight);
+		}
+
+		}
+	}
 }
 
 bool Scene2::OnCreate()
@@ -57,68 +107,23 @@ bool Scene2::OnCreate()
 	Matrix4 ortho = MMath::orthographic(0.0f, xAxis, 0.0f, yAxis, 0.0f, 1.0f);
 	projectionMatrix = ndc * ortho;
 
-	// let's set up a graph and test it out
+	// calculate rows and cols
+	int cols = ceil( xAxis / tileWidth );
+	int rows = ceil( yAxis / tileHeight );
+	createTiles(rows, cols);
 
-	int count = 5;
-	sceneNodes.resize(count);
-	
-	//create some nodes
-	// TODO delete them later!!!
-	for (int i = 0; i < count; i++)
-	{
-		sceneNodes[i] = new Node(i);
-	}
 
 	// create the graph
 	graph = new Graph();
 	if (!graph->OnCreate(sceneNodes))
 	{
+		cerr << "problem creating nodes" << endl;
 		return false;
-		// I'm being lazy about error message here
-	}
-
-	//         0
-	//         |
-	//   1 --- 2 --- 3
-	//         |
-	//         4
-
-	// connections from 0
-	graph->addWeightConnection(
-		sceneNodes[0]->getLabel(),
-		sceneNodes[2]->getLabel(),
-		1.0f
-	);
-
-	//connections from 1
-	graph->addWeightConnection(1, 2, 1.0f);
-
-	// connections from 2
-	graph->addWeightConnection(2, 0, 1.0f);
-	graph->addWeightConnection(2, 1, 1.0f);
-	graph->addWeightConnection(2, 3, 1.0f);
-	graph->addWeightConnection(2, 4, 1.0f);
-
-	// connections from 3
-	graph->addWeightConnection(3, 2, 1.0f);
-
-	// connections from 4
-	graph->addWeightConnection(4, 2, 1.0f);
-
-	cout << "Scene 2" << endl;
-	int myNode = 0;
-
-	cout << "neighbours of " << myNode << endl;
-	for (auto nodeLabel : graph->neighbours(myNode))
-	{
-		cout << "node " << nodeLabel << endl;
 	}
 
 
-	// calculate rows and cols
-	int cols = ceil( xAxis / tileWidth );
-	int rows = ceil( yAxis / tileHeight );
-	createTiles(rows, cols);
+	// create connections
+	calculateConnectionWeights();
 
 	// call dijsktra
 	vector<int> path = graph->Dijkstra(0, 4);
