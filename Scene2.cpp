@@ -7,10 +7,26 @@ Scene2::Scene2(SDL_Window* sdlWindow, GameManager* game_)
 	window = sdlWindow;
 	game = game_;
 	renderer = SDL_GetRenderer(window);
+	xAxis = 25.0f;
+	yAxis = 15.0f;
+}
+
+void Scene2::createTiles()
+{
+
+	singleTile = new Tile(2.0f, 1.0f, this);
+
 }
 
 bool Scene2::OnCreate()
 {
+	int w, h;
+	SDL_GetWindowSize(window,&w,&h);
+	
+	Matrix4 ndc = MMath::viewportNDC(w, h);
+	Matrix4 ortho = MMath::orthographic(0.0f, xAxis, 0.0f, yAxis, 0.0f, 1.0f);
+	projectionMatrix = ndc * ortho;
+
 	// let's set up a graph and test it out
 
 	int count = 5;
@@ -68,6 +84,9 @@ bool Scene2::OnCreate()
 		cout << "node " << nodeLabel << endl;
 	}
 
+
+	createTiles();
+
 	// call dijsktra
 	vector<int> path = graph->Dijkstra(0, 4);
 
@@ -78,3 +97,14 @@ void Scene2::OnDestroy()
 {
 	// memory clean up
 }
+
+void Scene2::Render()
+{
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	SDL_RenderClear(renderer);
+
+	singleTile->Render();
+
+	SDL_RenderPresent(renderer);
+}
+ 

@@ -3,6 +3,7 @@
 
 #include "Scene.h"
 #include "Graph.h"
+#include "Tile.h"
 
 class Scene2 :
     public Scene
@@ -16,6 +17,9 @@ private:
 	Matrix4     inverseProjection;
 	Graph* graph;
 	vector<Node*> sceneNodes;
+	Tile* singleTile;
+
+	void createTiles();
 
 public:
 	Scene2(SDL_Window* sdlWindow, GameManager* game_);
@@ -23,7 +27,7 @@ public:
 	bool OnCreate();
 	void OnDestroy();
 	void Update(const float time) {};
-	void Render() {};
+	void Render();
 	void HandleEvents(const SDL_Event& event) {};
 	float getxAxis() { return xAxis; }
 	float getyAxis() { return yAxis; }
