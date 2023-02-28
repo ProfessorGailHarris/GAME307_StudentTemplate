@@ -108,10 +108,9 @@ bool Scene2::OnCreate()
 	projectionMatrix = ndc * ortho;
 
 	// calculate rows and cols
-	int cols = ceil( xAxis / tileWidth );
-	int rows = ceil( yAxis / tileHeight );
+	int cols = ceil ( (xAxis - 0.5f * tileWidth) / tileWidth );
+	int rows = ceil ( (yAxis - 0.5f * tileHeight) / tileHeight );
 	createTiles(rows, cols);
-
 
 	// create the graph
 	graph = new Graph();
@@ -127,6 +126,16 @@ bool Scene2::OnCreate()
 
 	// call dijsktra
 	vector<int> path = graph->Dijkstra(0, 4);
+
+	// check correctness
+	vector<int> testNodes = {};
+	//testNodes = {0, 3, 4, 10, 12, 14, 20, 22, 24};
+	for (auto myNode : testNodes )
+	{
+	cout << endl << "neighbours of " << myNode << endl;
+	for( auto nodeLabel : graph->neighbours(myNode))
+		cout << "node " << nodeLabel << endl;
+	}
 
 	return true;
 }

@@ -19,10 +19,7 @@ private:
 	vector<Node*> sceneNodes;
 	float tileWidth;
 	float tileHeight;
-	Tile* singleTile;
-
 	vector< vector <Tile*> > tiles;
-
 	void createTiles(int rows, int cols);
 	void calculateConnectionWeights();
 
