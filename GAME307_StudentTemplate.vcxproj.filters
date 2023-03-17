@@ -25,6 +25,11 @@
     <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="DecisionTreeNode.cpp" />
+    <ClCompile Include="Action.cpp" />
+    <ClCompile Include="Decision.cpp" />
+    <ClCompile Include="PlayerInRangeDecision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -57,6 +62,11 @@
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="DecisionTreeNode.h" />
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="Decision.h" />
+    <ClInclude Include="PlayerInRangeDecision.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MATH">

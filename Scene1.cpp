@@ -84,6 +84,10 @@ bool Scene1::OnCreate() {
 		std::cerr << "Can't open blinky texture" << std::endl;
 		return false;
 	}
+	if (!blinky->readDecisionTreeXML("playerinrange.xml"))
+	{
+		return false;
+	}
 
 	// end of character set ups
 

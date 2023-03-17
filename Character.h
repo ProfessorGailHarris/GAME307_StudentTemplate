@@ -6,6 +6,9 @@
 #include "Scene.h"
 #include "KinematicBody.h"
 #include "Seek.h"
+#include "Action.h"
+#include "Decision.h"
+#include "PlayerInRangeDecision.h"
 
 using namespace std;
 
@@ -16,6 +19,8 @@ private:
 	class Scene* scene;
 
 	void steerToSeekPlayer(SteeringOutput* steering);
+
+	DecisionTreeNode* decider;
 
 public:
 	Character()
@@ -35,6 +40,10 @@ public:
 	void Update(float time);
 	void HandleEvents(const SDL_Event& event);
 	void render(float scale = 1.0f);
+	bool readDecisionTreeXML(string filename);
+
+	Vec3 getPos();
+	Vec3 getPlayerPos();
 
 };
 

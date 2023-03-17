@@ -62,7 +62,20 @@ void Character::Update(float deltaTime)
 	SteeringOutput* steering;
 	steering = new SteeringOutput();
 
-	steerToSeekPlayer(steering);
+	DecisionTreeNode* action = decider->makeDecision();
+	Action* a = static_cast<Action*>(action);
+
+	switch (a->getValue())
+	{
+	case ACTION_SET::SEEK:
+		steerToSeekPlayer(steering);
+		break;
+	case ACTION_SET::DO_NOTHING:
+		break;
+	}
+
+
+	//steerToSeekPlayer(steering);
 	
 	// apply the steering to the equations of motion
 	body->Update(deltaTime, steering);
@@ -139,4 +152,27 @@ void Character::render(float scale)
 
 	SDL_RenderCopyEx(renderer, body->getTexture(), nullptr, &square,
 		orientation, nullptr, SDL_FLIP_NONE);
+}
+
+bool Character::readDecisionTreeXML(string filename)
+{
+	// Gail is faking it here, not actually reading a file
+	// TODO error checking, does the file exist, can you open, etc.
+	if (filename == "playerinrange.xml")
+	{
+		DecisionTreeNode* trueNode = new Action(ACTION_SET::SEEK);
+		DecisionTreeNode* falseNode = new Action(ACTION_SET::DO_NOTHING);
+		decider = new PlayerInRangeDecision { trueNode, falseNode, this };
+	}
+	return true;
+}
+
+Vec3 Character::getPos()
+{
+	return body->getPos();
+}
+
+Vec3 Character::getPlayerPos()
+{
+	return scene->game->getPlayer()->getPos();
 }
