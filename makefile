@@ -22,6 +22,10 @@ OBJS += Steering/KinematicSteeringOutput.o
 OBJS += Steering/SteeringBehaviour.o
 OBJS += Steering/StaticBody.o
 OBJS += Steering/Seek.o
+OBJS += Action.o
+OBJS += Decision.o
+OBJS += DecisionTreeNode.o
+OBJS += PlayerInRangeDecision.o
 
 SDLCFG := sdl2-config
 
