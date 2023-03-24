@@ -62,18 +62,33 @@ void Character::Update(float deltaTime)
 	SteeringOutput* steering;
 	steering = new SteeringOutput();
 
-	DecisionTreeNode* action = decider->makeDecision();
-	Action* a = static_cast<Action*>(action);
-
-	switch (a->getValue())
+	if (decider != NULL)
 	{
-	case ACTION_SET::SEEK:
-		steerToSeekPlayer(steering);
-		break;
-	case ACTION_SET::DO_NOTHING:
-		break;
+		DecisionTreeNode* action = decider->makeDecision();
+		Action* a = static_cast<Action*>(action);
+
+		switch (a->getValue())
+		{
+		case ACTION_SET::SEEK:
+			steerToSeekPlayer(steering);
+			break;
+		case ACTION_SET::DO_NOTHING:
+			break;
+		}
 	}
 
+	if (stateMachine != NULL)
+	{
+		stateMachine->update();
+		switch (stateMachine->getCurrentStateName())
+		{
+		case STATE::SEEK:
+			steerToSeekPlayer(steering);
+			break;
+		case STATE::DO_NOTHING:
+			break;
+		}
+	}
 
 	//steerToSeekPlayer(steering);
 	
@@ -164,6 +179,31 @@ bool Character::readDecisionTreeXML(string filename)
 		DecisionTreeNode* falseNode = new Action(ACTION_SET::DO_NOTHING);
 		decider = new PlayerInRangeDecision { trueNode, falseNode, this };
 	}
+	return true;
+}
+
+bool Character::readStateMachineXML(string filename)
+{
+	stateMachine = new StateMachine();
+	if (!stateMachine) return false;
+
+	State* seekPlayer = new State(STATE::SEEK);
+	State* doNothing = new State(STATE::DO_NOTHING);
+
+	Condition* ifInRange = new ConditionIfInRange(this);
+
+	doNothing->addTransition(
+		new Transition(ifInRange, seekPlayer)
+	);
+
+	Condition* ifOutOfRange = new ConditionIfOutOfRange(this);
+
+	seekPlayer->addTransition(
+		new Transition(ifOutOfRange, doNothing)
+	);
+
+	stateMachine->setInitialState(doNothing);
+
 	return true;
 }
 

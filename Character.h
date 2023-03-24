@@ -9,6 +9,8 @@
 #include "Action.h"
 #include "Decision.h"
 #include "PlayerInRangeDecision.h"
+#include "StateMachine.h"
+#include "ConditionIfInRange.h"
 
 using namespace std;
 
@@ -21,12 +23,15 @@ private:
 	void steerToSeekPlayer(SteeringOutput* steering);
 
 	DecisionTreeNode* decider;
+	StateMachine* stateMachine;
 
 public:
 	Character()
 	{
 		body = NULL;
 		scene = NULL;
+		stateMachine = NULL;
+		decider = NULL;
 	};
 
 	~Character()
@@ -41,6 +46,7 @@ public:
 	void HandleEvents(const SDL_Event& event);
 	void render(float scale = 1.0f);
 	bool readDecisionTreeXML(string filename);
+	bool readStateMachineXML(string filename);
 
 	Vec3 getPos();
 	Vec3 getPlayerPos();
