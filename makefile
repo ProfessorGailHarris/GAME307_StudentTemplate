@@ -27,6 +27,10 @@ OBJS += Decision.o
 OBJS += DecisionTreeNode.o
 OBJS += PlayerInRangeDecision.o
 
+OBJS += StateMachine.o
+OBJS += Condition.o
+OBJS += ConditionIfInRange.o
+
 SDLCFG := sdl2-config
 
 CPPFLAGS = $(shell $(SDLCFG) --cflags)
