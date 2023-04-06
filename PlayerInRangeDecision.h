@@ -12,9 +12,6 @@ using namespace MATH;
 class PlayerInRangeDecision :
     public Decision
 {
-protected:
-    Character* owner;
-
 public:
     PlayerInRangeDecision(DecisionTreeNode* trueNode_, DecisionTreeNode* falseNode_, Character* owner_)
     {

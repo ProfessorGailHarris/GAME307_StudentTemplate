@@ -4,7 +4,7 @@
 class Condition
 {
 protected:
-	class Character* owner;
+	const class Character* owner;
 
 public:
 	Condition(Character* owner_) { owner = owner_; }

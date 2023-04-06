@@ -207,12 +207,12 @@ bool Character::readStateMachineXML(string filename)
 	return true;
 }
 
-Vec3 Character::getPos()
+Vec3 Character::getPos() const
 {
 	return body->getPos();
 }
 
-Vec3 Character::getPlayerPos()
+Vec3 Character::getPlayerPos() const
 {
 	return scene->game->getPlayer()->getPos();
 }

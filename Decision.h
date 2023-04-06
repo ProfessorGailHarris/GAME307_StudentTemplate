@@ -6,12 +6,13 @@ class Decision :
     public DecisionTreeNode
 {
 protected:
+    const class Character* owner;
     DecisionTreeNode* trueNode;
     DecisionTreeNode* falseNode;
 
 public:
     virtual DecisionTreeNode* makeDecision();
-    virtual bool testValue();
+    virtual bool testValue() = 0;
     virtual DecisionTreeNode* getBranch();
 };
 

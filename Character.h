@@ -48,8 +48,8 @@ public:
 	bool readDecisionTreeXML(string filename);
 	bool readStateMachineXML(string filename);
 
-	Vec3 getPos();
-	Vec3 getPlayerPos();
+	Vec3 getPos() const;
+	Vec3 getPlayerPos() const;
 
 };
 
