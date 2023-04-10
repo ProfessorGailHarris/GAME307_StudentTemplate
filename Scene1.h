@@ -19,6 +19,7 @@ private:
     Matrix4     inverseProjection;
 
 	Character* blinky;
+	Character* clyde;
 
 	StaticBody* myNPC;
 

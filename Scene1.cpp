@@ -12,6 +12,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 	// create a NPC
 	myNPC = nullptr;
 	blinky = nullptr;
+	clyde = nullptr;
 }
 
 Scene1::~Scene1(){
@@ -19,6 +20,11 @@ Scene1::~Scene1(){
 	{
 		blinky->OnDestroy();
 		delete blinky;
+	}
+	if (clyde)
+	{
+		clyde->OnDestroy();
+		delete clyde;
 	}
 }
 
@@ -84,12 +90,19 @@ bool Scene1::OnCreate() {
 		std::cerr << "Can't open blinky texture" << std::endl;
 		return false;
 	}
-	//if (!blinky->readDecisionTreeXML("playerinrange.xml"))
-	//{
-	//	return false;
-	//}
 
 	if (!blinky->readStateMachineXML("blinkySM.xml"))
+	{
+		return false;
+	}
+
+	clyde = new Character();
+	if (!clyde->OnCreate(this) || !clyde->setTextureWith("Clyde.png"))
+	{
+		std::cerr << "Can't open clyde texture" << std::endl;
+		return false;
+	}
+	if (!clyde->readDecisionTreeXML("playerinrange.xml"))
 	{
 		return false;
 	}
@@ -121,6 +134,7 @@ void Scene1::Update(const float deltaTime) {
 
 	//myNPC->Update(deltaTime, steering);
 	blinky->Update(deltaTime);
+	clyde->Update(deltaTime);
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
@@ -168,6 +182,7 @@ void Scene1::Render() {
 
 
 	blinky->render(0.15f);
+	clyde->render(0.15f);
 
 	// render the player
 	game->RenderPlayer(0.10f);
