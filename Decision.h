@@ -6,7 +6,7 @@ class Decision :
     public DecisionTreeNode
 {
 protected:
-    const class Character* owner;
+    class Character* owner;
     DecisionTreeNode* trueNode;
     DecisionTreeNode* falseNode;
 
