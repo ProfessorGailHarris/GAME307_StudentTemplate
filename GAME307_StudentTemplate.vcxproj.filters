@@ -34,6 +34,8 @@
     <ClCompile Include="Condition.cpp" />
     <ClCompile Include="ConditionIfInRange.cpp" />
     <ClCompile Include="CharacterAdapter.cpp" />
+    <ClCompile Include="Pool.cpp" />
+    <ClCompile Include="Particle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -75,6 +77,8 @@
     <ClInclude Include="Condition.h" />
     <ClInclude Include="ConditionIfInRange.h" />
     <ClInclude Include="CharacterAdapter.h" />
+    <ClInclude Include="Pool.h" />
+    <ClInclude Include="Particle.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MATH">

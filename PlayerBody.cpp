@@ -21,6 +21,13 @@ bool PlayerBody::OnCreate()
         std::cerr << "Can't create the texture" << std::endl;
         return false;
     }
+
+    if (!particles.OnCreate(game))
+    {
+        std::cerr << "Issue creating particle pool" << std::endl;
+        return false;
+    }
+
     return true;
 }
 
@@ -54,6 +61,8 @@ void PlayerBody::Render( float scale )
 
     SDL_RenderCopyEx( renderer, texture, nullptr, &square,
         orientationDegrees, nullptr, SDL_FLIP_NONE );
+
+    particles.render(game);
 }
 
 void PlayerBody::HandleEvents( const SDL_Event& event )
@@ -148,6 +157,20 @@ void PlayerBody::HandleEvents( const SDL_Event& event )
                 break;
         }
     }
+
+    // particles
+    if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
+    {
+        int fps = 60;
+        switch (event.key.keysym.scancode)
+        {
+        case SDL_SCANCODE_SPACE:
+            particles.createParticle(pos, 3.0 * vel, 2 * fps);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 void PlayerBody::Update( float deltaTime )
@@ -182,6 +205,8 @@ void PlayerBody::Update( float deltaTime )
         pos.y = height - radius;
         vel.y = 0.0f;
     }
+
+    particles.update(deltaTime);
 }
 
 void PlayerBody::resetToOrigin()

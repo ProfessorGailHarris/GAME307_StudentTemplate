@@ -11,11 +11,13 @@
 #include <stdio.h>
 #include "Body.h"
 #include "GameManager.h"
+#include "Pool.h"
 
 class PlayerBody : public Body
 {
 protected:
     class GameManager* game;
+    Pool particles;
 
 public:
     PlayerBody() : Body{}
