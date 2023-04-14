@@ -33,6 +33,7 @@
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Condition.cpp" />
     <ClCompile Include="ConditionIfInRange.cpp" />
+    <ClCompile Include="CharacterAdapter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -73,6 +74,7 @@
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Condition.h" />
     <ClInclude Include="ConditionIfInRange.h" />
+    <ClInclude Include="CharacterAdapter.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MATH">

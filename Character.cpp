@@ -4,6 +4,9 @@ bool Character::OnCreate(Scene* scene_)
 {
 	scene = scene_;
 
+	// Set up my adapter
+	myAdapter = new CharacterAdapter{ this };
+
 	// Configure and instantiate the body to use for the demo
 	if (!body)
 	{
@@ -190,13 +193,13 @@ bool Character::readStateMachineXML(string filename)
 	State* seekPlayer = new State(STATE::SEEK);
 	State* doNothing = new State(STATE::DO_NOTHING);
 
-	Condition* ifInRange = new ConditionIfInRange(this);
+	Condition* ifInRange = new ConditionIfInRange(myAdapter);
 
 	doNothing->addTransition(
 		new Transition(ifInRange, seekPlayer)
 	);
 
-	Condition* ifOutOfRange = new ConditionIfOutOfRange(this);
+	Condition* ifOutOfRange = new ConditionIfOutOfRange(myAdapter);
 
 	seekPlayer->addTransition(
 		new Transition(ifOutOfRange, doNothing)

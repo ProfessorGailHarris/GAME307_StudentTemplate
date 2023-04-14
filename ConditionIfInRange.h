@@ -8,7 +8,7 @@ class ConditionIfInRange :
     public Condition
 {
 public:
-    ConditionIfInRange(Character* owner_)
+    ConditionIfInRange(CharacterAdapter* owner_)
         : Condition{ owner_ }
     {
     // any other initializations
@@ -21,7 +21,7 @@ class ConditionIfOutOfRange :
     public Condition
 {
 public:
-    ConditionIfOutOfRange(Character* owner_)
+    ConditionIfOutOfRange(CharacterAdapter* owner_)
         : Condition{ owner_ }
     {
         // any other initializations

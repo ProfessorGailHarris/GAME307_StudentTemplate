@@ -4,10 +4,10 @@
 class Condition
 {
 protected:
-	class Character* owner;
+	class CharacterAdapter* owner;
 
 public:
-	Condition(Character* owner_) { owner = owner_; }
+	Condition(CharacterAdapter* owner_) { owner = owner_; }
 
 	virtual bool test() = 0;
 };

@@ -11,6 +11,7 @@
 #include "PlayerInRangeDecision.h"
 #include "StateMachine.h"
 #include "ConditionIfInRange.h"
+#include "CharacterAdapter.h"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ private:
 
 	DecisionTreeNode* decider;
 	StateMachine* stateMachine;
+
+	CharacterAdapter* myAdapter;
 
 public:
 	Character()

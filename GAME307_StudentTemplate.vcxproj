@@ -136,6 +136,7 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CharacterAdapter.cpp" />
     <ClCompile Include="Condition.cpp" />
     <ClCompile Include="ConditionIfInRange.cpp" />
     <ClCompile Include="Decision.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CharacterAdapter.h" />
     <ClInclude Include="Condition.h" />
     <ClInclude Include="ConditionIfInRange.h" />
     <ClInclude Include="Decision.h" />
