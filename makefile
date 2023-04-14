@@ -4,6 +4,7 @@ OBJS += Main.o
 OBJS += GameManager.o
 OBJS += Body.o
 OBJS += Character.o
+OBJS += CharacterAdapter.o
 OBJS += MMath.o
 OBJS += PlayerBody.o
 OBJS += Scene1.o
@@ -30,6 +31,8 @@ OBJS += PlayerInRangeDecision.o
 OBJS += StateMachine.o
 OBJS += Condition.o
 OBJS += ConditionIfInRange.o
+OBJS += Pool.o
+OBJS += Particle.o
 
 SDLCFG := sdl2-config
 
