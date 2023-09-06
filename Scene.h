@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include "MMath.h"
+#include <MMath.h>
 #include "GameManager.h"
 
 using namespace MATH;

@@ -1,8 +1,8 @@
 #ifndef BODY_H
 #define BODY_H
 
-#include "MMath.h"
-#include "VMath.h"
+#include <MMath.h>
+#include <VMath.h>
 #include <SDL.h>
 #include <SDL_image.h>
 

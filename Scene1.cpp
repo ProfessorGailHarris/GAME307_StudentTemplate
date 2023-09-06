@@ -1,5 +1,4 @@
 #include "Scene1.h"
-#include "VMath.h"
 
 
 Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
