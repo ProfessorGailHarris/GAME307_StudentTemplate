@@ -52,6 +52,7 @@ bool Character::setTextureWith(string file)
 		return false;
 	}
 	body->setTexture(texture);
+	return true;
 }
 
 

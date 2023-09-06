@@ -4,11 +4,9 @@ OBJS += Main.o
 OBJS += GameManager.o
 OBJS += Body.o
 OBJS += Character.o
-OBJS += MMath.o
 OBJS += PlayerBody.o
 OBJS += Scene1.o
 OBJS += Timer.o
-OBJS += VMath.o
 OBJS += Window.o
 OBJS += Steering/KinematicBody.o
 OBJS += Steering/SteeringOutput.o
@@ -24,6 +22,7 @@ OBJS += Steering/SteeringOutput.o
 SDLCFG := sdl2-config
 
 CPPFLAGS = $(shell $(SDLCFG) --cflags)
+CPPFLAGS += -I/opt/local/include/GAMEDEVMathLibrary
 
 LIBSDL = $(shell $(SDLCFG) --libs)
 LIBSDL += -lSDL2_image
@@ -57,16 +56,4 @@ Main.o: Main.cpp GameManager.h
 
 clean:
 	-rm -f $(OBJS) main
-
-
-
-########
-
-#Main.o:	Main.cpp
-#	gcc -std=c++17 -c \
-#	-I./Steering \
-#	-I/Library/Frameworks \
-#	-I/Library/Frameworks/SDL2.framework/Headers  \
-#	-I/Library/Frameworks/SDL2_image.framework/Headers \
-#	Main.cpp
 
