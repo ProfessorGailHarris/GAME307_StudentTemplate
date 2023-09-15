@@ -94,7 +94,7 @@ void Scene1::Update(const float deltaTime) {
 	// Calculate and apply any steering for npc's
 	//blinky->Update(deltaTime);
 
-	KinematicSteeringOutput *steering = new KinematicSteeringOutput{ {1.0f,0.2f,0.0},0.0f };
+	KinematicSteeringOutput *steering;
 
 	// create KinematicSeek
 	KinematicSeek* steeringAlgorithm;

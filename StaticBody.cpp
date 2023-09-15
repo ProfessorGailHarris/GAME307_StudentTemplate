@@ -4,12 +4,13 @@ void StaticBody::Update(float deltaTime, KinematicSteeringOutput* steering)
 {
 	// can do this at beginning or end
 	Body::Update(deltaTime);
+	newOrientation();
 
 	// set the value based on the steering input
 	if (steering == nullptr)
 	{
 		vel = Vec3();
-		orientation = 0.0f;
+		rotation = 0.0f;
 		return;
 	}
 
