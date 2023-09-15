@@ -17,6 +17,9 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>GAME</Filter>
     </ClCompile>
+    <ClCompile Include="StaticBody.cpp" />
+    <ClCompile Include="KinematicSteeringOutput.cpp" />
+    <ClCompile Include="KinematicSeek.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -35,6 +38,9 @@
     <ClInclude Include="GameManager.h">
       <Filter>GAME</Filter>
     </ClInclude>
+    <ClInclude Include="StaticBody.h" />
+    <ClInclude Include="KinematicSteeringOutput.h" />
+    <ClInclude Include="KinematicSeek.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">
