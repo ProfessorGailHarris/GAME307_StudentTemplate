@@ -103,10 +103,15 @@ void Scene1::Update(const float deltaTime) {
 	steeringAlgorithm = new KinematicSeek(myNPC, target);
 	steering = steeringAlgorithm->getSteering();
 
-	myNPC->Update(deltaTime, steering);
+	//myNPC->Update(deltaTime, steering);
+
+	blinky->Update(deltaTime);
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
+
+	// clean up memory
+	if (steeringAlgorithm) delete steeringAlgorithm;
 }
 
 void Scene1::Render() {
@@ -133,8 +138,11 @@ void Scene1::Render() {
 	float orientation = myNPC->getOrientation();
 	float orientationDegrees = orientation * 180.0f / M_PI;
 
-	SDL_RenderCopyEx(renderer, myNPC->getTexture(), nullptr, &rect,
-		orientationDegrees, nullptr, SDL_FLIP_NONE);
+	//SDL_RenderCopyEx(renderer, myNPC->getTexture(), nullptr, &rect,
+	//	orientationDegrees, nullptr, SDL_FLIP_NONE);
+
+	// render our npc's
+	blinky->render(0.15f);
 
 	// render the player
 	game->RenderPlayer(0.10f);

@@ -60,18 +60,26 @@ void Character::Update(float deltaTime)
 {
 	// create a new overall steering output
 	SteeringOutput* steering;
-	steering = NULL;
+	//steering = NULL;
 
 	// set the target for steering; target is used by the steerTo... functions
 	// (often the target is the Player)
 
+	PlayerBody* target = scene->game->getPlayer();
+
 	// using the target, calculate and set values in the overall steering output
+	SteeringBehaviour* steering_algorithm = new Seek(body, target);
+	steering = steering_algorithm->getSteering();
 
 	// apply the steering to the equations of motion
 	body->Update(deltaTime, steering);
 
 	// clean up memory
 	// (delete only those objects created in this function)
+	if (steering_algorithm)
+	{
+		delete steering_algorithm;
+	}
 }
 
 void Character::HandleEvents(const SDL_Event& event)
