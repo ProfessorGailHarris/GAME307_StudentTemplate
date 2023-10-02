@@ -61,7 +61,9 @@ void Character::Update(float deltaTime)
 	// create a new overall steering output
 	SteeringOutput* steering = new SteeringOutput();
 
-	steerToSeekPlayer(steering);
+	//steerToSeekPlayer(steering);
+	steerToFleePlayer(steering);
+	//steerToPursuePlayer(steering);
 
 	body->Update(deltaTime, steering);
 
@@ -131,6 +133,39 @@ void Character::steerToSeekPlayer(SteeringOutput* steering)
 		}
 	}
 
+
+	if (steering_algorithm)
+	{
+		delete steering_algorithm;
+	}
+}
+
+void Character::steerToFleePlayer(SteeringOutput* steering)
+{
+	std::vector<SteeringOutput*> steering_outputs;
+
+	// set the target for steering; target is used by the steerTo... functions
+	// (often the target is the Player)
+
+	PlayerBody* target = scene->game->getPlayer();
+
+	// using the target, calculate and set values in the overall steering output
+	SteeringBehaviour* steering_algorithm = new Flee(body, target);
+	//*steering = *(steering_algorithm->getSteering());
+	steering_outputs.push_back(steering_algorithm->getSteering());
+
+	// add another behaviour ...
+	// create the algorithm instance
+	// push getSteering() onto our list
+
+	//add together steering outputs
+	for (int i = 0; i < steering_outputs.size(); i++)
+	{
+		if (steering_outputs[i])
+		{
+			*steering += *steering_outputs[i];
+		}
+	}
 
 	if (steering_algorithm)
 	{

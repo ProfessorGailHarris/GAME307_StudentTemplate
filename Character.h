@@ -5,7 +5,8 @@
 
 #include "Scene.h"
 #include "KinematicBody.h"
-#include "Seek.h";
+#include "Seek.h"
+#include "Flee.h"
 
 using namespace std;
 
@@ -35,6 +36,7 @@ public:
 	void render(float scale = 1.0f);
 
 	void steerToSeekPlayer(SteeringOutput* steering);
+	void steerToFleePlayer(SteeringOutput* steering);
 };
 
 #endif

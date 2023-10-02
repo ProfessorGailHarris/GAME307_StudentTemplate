@@ -22,6 +22,7 @@
     <ClCompile Include="KinematicSeek.cpp" />
     <ClCompile Include="SteeringBehaviour.cpp" />
     <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="Flee.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -45,6 +46,7 @@
     <ClInclude Include="KinematicSeek.h" />
     <ClInclude Include="SteeringBehaviour.h" />
     <ClInclude Include="Seek.h" />
+    <ClInclude Include="Flee.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">
