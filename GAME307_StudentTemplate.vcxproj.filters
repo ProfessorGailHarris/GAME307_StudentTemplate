@@ -23,6 +23,9 @@
     <ClCompile Include="SteeringBehaviour.cpp" />
     <ClCompile Include="Seek.cpp" />
     <ClCompile Include="Flee.cpp" />
+    <ClCompile Include="Scene2.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Graph.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -47,6 +50,9 @@
     <ClInclude Include="SteeringBehaviour.h" />
     <ClInclude Include="Seek.h" />
     <ClInclude Include="Flee.h" />
+    <ClInclude Include="Scene2.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Graph.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">
