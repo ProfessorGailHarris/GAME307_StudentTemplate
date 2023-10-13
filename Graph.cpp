@@ -61,10 +61,10 @@ std::vector<int> Graph::neighbours(int fromNode)
 	return result;
 }
 
+// might be better to put these structs in private area of Graph.h
+
 struct NodeAndPriority
 {
-public:
-
 	// member variables
 	Node* node;
 	float priority;
@@ -78,11 +78,7 @@ public:
 	{
 		printf("Node: %i, priority: %.2f \n", node->getLabel(), priority);
 	}
-};
 
-// create struct with one operation, for use in the comparisons needed by the priority queue
-struct ComparePriority
-{
 	bool operator()(NodeAndPriority const& lhs, NodeAndPriority const& rhs)
 	{
 		// make it a min queue: lowest value of priority at top of the queue
@@ -94,16 +90,18 @@ std::vector<int> Graph::Dijkstra(int start, int goal)
 {
 	float new_cost;
 	float priority;
-	Node* current = node[start];
+	Node* currentNode = node[start];
+	int current = currentNode->getLabel(); // useful for index into came_from and cost_so_far
 
-	std::priority_queue<NodeAndPriority, std::deque<NodeAndPriority>, ComparePriority > frontier;
-	frontier.push( NodeAndPriority { current, 0.0f } );
+	std::priority_queue<NodeAndPriority, std::deque<NodeAndPriority>, NodeAndPriority > frontier;
+	frontier.push( NodeAndPriority { currentNode, 0.0f } );
 
 	//track solution path (n.b. integers are labels of the nodes)
 	std::vector<int> came_from;
 	came_from.resize(numNodes());
 
 	//cost so far storage
+	//use map, not vector, to allow detecting if a node has an entry
 	std::map<int, float> cost_so_far;
 	cost_so_far[start] = 0.0f;
 
