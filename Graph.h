@@ -7,6 +7,7 @@
 #include <map>
 #include "Node.h"
 #include <iostream>
+#include <queue>
 
 class Graph
 {

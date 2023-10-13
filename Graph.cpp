@@ -61,7 +61,76 @@ std::vector<int> Graph::neighbours(int fromNode)
 	return result;
 }
 
+struct NodeAndPriority
+{
+public:
+
+	// member variables
+	Node* node;
+	float priority;
+
+	// constructors
+	// We'll use the "universal" constructor when needed.
+	// See: https://learn.microsoft.com/en-us/cpp/cpp/initializing-classes-and-structs-without-constructors-cpp?view=msvc-170
+
+	// useful functions
+	void print()
+	{
+		printf("Node: %i, priority: %.2f \n", node->getLabel(), priority);
+	}
+};
+
+// create struct with one operation, for use in the comparisons needed by the priority queue
+struct ComparePriority
+{
+	bool operator()(NodeAndPriority const& lhs, NodeAndPriority const& rhs)
+	{
+		// make it a min queue: lowest value of priority at top of the queue
+		return lhs.priority > rhs.priority;
+	}
+};
+
 std::vector<int> Graph::Dijkstra(int start, int goal)
 {
-	return {};
+	float new_cost;
+	float priority;
+	Node* current = node[start];
+
+	std::priority_queue<NodeAndPriority, std::deque<NodeAndPriority>, ComparePriority > frontier;
+	frontier.push( NodeAndPriority { current, 0.0f } );
+
+	//track solution path (n.b. integers are labels of the nodes)
+	std::vector<int> came_from;
+	came_from.resize(numNodes());
+
+	//cost so far storage
+	std::map<int, float> cost_so_far;
+	cost_so_far[start] = 0.0f;
+
+	//implement algorithm
+
+	// loop through frontier, while it not empty
+	{
+		// get the top node, AND pop it off
+		// if its the goal, then break out
+
+		// for the neighbours of current node
+		{
+			// calculate new cost
+			// if you add heuristic(), then you've got A*
+			// if neighbour is not an index in cost_so_far, or new cost is lower
+			{
+				// found a better path, so update data structures
+			}
+		}
+	}
+
+	// Follow the breadcrumbs in came_from to produce path
+	std::vector<int> path = {};
+
+	// do stuff to follow breadcrumbs
+
+	return path;
 }
+
+
