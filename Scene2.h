@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Node.h"
 #include "Graph.h"
+#include "Tile.h"
 
 class Scene2 :
     public Scene
@@ -17,6 +18,9 @@ private:
 
 	Graph* graph;
 	std::vector<Node*> sceneNodes;
+
+	Tile* singleTile;
+	void createTiles();
 
 public:
 	Scene2(SDL_Window* sdlWindow, GameManager* game_);

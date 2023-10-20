@@ -26,6 +26,7 @@
     <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">
