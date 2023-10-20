@@ -21,8 +21,9 @@ private:
 
 	float tileWidth;
 	float tileHeight;
-	Tile* singleTile;
-	void createTiles();
+
+	std::vector< std::vector <Tile*> > tiles;
+	void createTiles(int rows, int cols);
 
 public:
 	Scene2(SDL_Window* sdlWindow, GameManager* game_);

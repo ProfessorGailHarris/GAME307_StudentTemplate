@@ -1,13 +1,37 @@
 #include "Scene2.h"
 
-void Scene2::createTiles()
+void Scene2::createTiles(int rows, int cols )
 {
-	Vec3 tilePos = Vec3(19.8f, 1.2, 0.0f);
-	Node* n = new Node(7);
-	singleTile = new Tile(n, tilePos, tileWidth, tileHeight, this);
+	tiles.resize(rows);
+	for (int i = 0; i < rows; i++)
+	{
+		tiles[i].resize(cols);
+	}
 
-	std::cout << "node label " << singleTile->getNode()->getLabel() << std::endl;
+	Node* n;
+	Tile* t;
+	int i, j, label;
 
+	i = 0;
+	j = 0;
+	label = 0;
+
+	for (float y = 0.5f * tileHeight; y < yAxis; y += tileHeight)
+	{
+		// do stuff for a row, y stays constant
+		for (float x = 0.5f * tileWidth; x < xAxis; x += tileWidth)
+		{
+			//create tiles and nodes
+			n = new Node(label);
+			Vec3 tilePos = Vec3(x, y, 0.0f);
+			t = new Tile(n, tilePos, tileWidth, tileHeight, this);
+			tiles[i][j] = t;
+			j++;
+			label++;
+		}
+		j = 0;
+		i++;
+	}
 }
 
 Scene2::Scene2(SDL_Window* sdlWindow, GameManager* game_)
@@ -34,7 +58,10 @@ bool Scene2::OnCreate()
 	Matrix4 ortho = MMath::orthographic(0.0f, xAxis, 0.0f, yAxis, 0.0f, 1.0f);
 	projectionMatrix = ndc * ortho;
 
-	createTiles();
+	//calculate rows and cols
+	int cols = ceil((xAxis - 0.5f * tileWidth) / tileWidth);
+	int rows = ceil((yAxis - 0.5f * tileHeight) / tileHeight);
+	createTiles(rows, cols);
 
 	// let's set up a graph and test it out
 	int count = 5;
@@ -108,7 +135,13 @@ void Scene2::Render()
 	SDL_RenderClear(renderer);
 
 	// render tiles
-	singleTile->Render();
+	for (int i = 0; i < tiles.size(); i++)
+	{
+		for (int j = 0; j < tiles[i].size(); j++)
+		{
+			tiles[i][j]->Render();
+		}
+	}
 
 	SDL_RenderPresent(renderer);
 }
