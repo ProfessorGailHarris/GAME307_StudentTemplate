@@ -1,7 +1,9 @@
  #include "Tile.h"
 
-Tile::Tile(float width_, float height_, Scene* scene_)
+Tile::Tile(Node* node_, Vec3 pos_, float width_, float height_, Scene* scene_)
 {
+	node = node_;
+	pos = pos_;
 	width = width_;
 	height = height_;
 	r = 0;
@@ -23,8 +25,6 @@ void Tile::Render()
 	Vec3 bottomRightScreen;
 
 	// the center of the tile
-	Vec3 pos = Vec3(8.0f, 5.5f, 0.0f);
-
 	topLeft = Vec3(pos.x - 0.5 * width, pos.y + 0.5 * height, 0.0f);
 	bottomRight = Vec3(pos.x + 0.5 * width, pos.y - 0.5 * height, 0.0f);
 

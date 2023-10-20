@@ -2,7 +2,12 @@
 
 void Scene2::createTiles()
 {
-	singleTile = new Tile(2.0, 1.0, this);
+	Vec3 tilePos = Vec3(19.8f, 1.2, 0.0f);
+	Node* n = new Node(7);
+	singleTile = new Tile(n, tilePos, tileWidth, tileHeight, this);
+
+	std::cout << "node label " << singleTile->getNode()->getLabel() << std::endl;
+
 }
 
 Scene2::Scene2(SDL_Window* sdlWindow, GameManager* game_)
@@ -20,6 +25,8 @@ Scene2::~Scene2()
 
 bool Scene2::OnCreate()
 {
+	tileWidth = 5.0f;
+	tileHeight = 3.0f;
 	int w, h;
 	SDL_GetWindowSize(window, &w, &h);
 

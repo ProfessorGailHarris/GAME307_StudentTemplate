@@ -19,6 +19,8 @@ private:
 	Graph* graph;
 	std::vector<Node*> sceneNodes;
 
+	float tileWidth;
+	float tileHeight;
 	Tile* singleTile;
 	void createTiles();
 
