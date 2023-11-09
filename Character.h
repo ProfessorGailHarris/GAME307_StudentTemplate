@@ -9,6 +9,7 @@
 #include "Flee.h"
 
 #include "Action.h"
+#include "PlayerInRangeDecision.h"
 
 using namespace std;
 
@@ -43,6 +44,8 @@ public:
 	void steerToFleePlayer(SteeringOutput* steering);
 
 	bool readDecisionTreeFromFile(string file);
+	Vec3 getPos() const { return body->getPos(); }
+	Vec3 getPlayerPos() const { return scene->game->getPlayer()->getPos(); }
 };
 
 #endif

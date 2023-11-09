@@ -184,8 +184,14 @@ void Character::steerToFleePlayer(SteeringOutput* steering)
 bool Character::readDecisionTreeFromFile(string file)
 {
 	//Gail is faking it here, not actually reading a file
-	if (file == "blinky")
+	if (file == "seek")
 		decisionTree = new Action(ACTION_SET::SEEK);
+	else if (file == "blinky")
+	{
+		DecisionTreeNode* trueNode = new Action(ACTION_SET::SEEK);
+		DecisionTreeNode* falseNode = new Action(ACTION_SET::DO_NOTHING);
+		decisionTree = new PlayerInRangeDecision(trueNode, falseNode, this);
+	}
 	else
 		return false;
 
