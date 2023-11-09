@@ -8,6 +8,8 @@
 #include "Seek.h"
 #include "Flee.h"
 
+#include "Action.h"
+
 using namespace std;
 
 class Character
@@ -15,6 +17,8 @@ class Character
 private:
 	class KinematicBody* body;
 	class Scene* scene;
+
+	DecisionTreeNode* decisionTree;
 
 public:
 	Character()
@@ -37,6 +41,8 @@ public:
 
 	void steerToSeekPlayer(SteeringOutput* steering);
 	void steerToFleePlayer(SteeringOutput* steering);
+
+	bool readDecisionTreeFromFile(string file);
 };
 
 #endif

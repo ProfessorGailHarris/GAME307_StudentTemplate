@@ -27,6 +27,8 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="DecisionTreeNode.cpp" />
+    <ClCompile Include="Action.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -55,6 +57,8 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="DecisionTreeNode.h" />
+    <ClInclude Include="Action.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">

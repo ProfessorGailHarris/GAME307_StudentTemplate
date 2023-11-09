@@ -61,7 +61,24 @@ void Character::Update(float deltaTime)
 	// create a new overall steering output
 	SteeringOutput* steering = new SteeringOutput();
 
-	steerToSeekPlayer(steering);
+	DecisionTreeNode* action = decisionTree->makeDecision();
+	// need static cast to get the value of the action
+	Action* a = static_cast<Action*>(action);
+
+	switch (a->getValue())
+	{
+	case ACTION_SET::SEEK:
+		steerToSeekPlayer(steering);
+		break;
+
+	case ACTION_SET::DO_NOTHING:
+		break;
+
+	default:
+		break;
+	}
+
+	//steerToSeekPlayer(steering);
 	//steerToFleePlayer(steering);
 	//steerToPursuePlayer(steering);
 
@@ -162,4 +179,15 @@ void Character::steerToFleePlayer(SteeringOutput* steering)
 	{
 		delete steering_algorithm;
 	}
+}
+
+bool Character::readDecisionTreeFromFile(string file)
+{
+	//Gail is faking it here, not actually reading a file
+	if (file == "blinky")
+		decisionTree = new Action(ACTION_SET::SEEK);
+	else
+		return false;
+
+	return true;
 }
