@@ -61,9 +61,24 @@ void Character::Update(float deltaTime)
 	// create a new overall steering output
 	SteeringOutput* steering = new SteeringOutput();
 
-	steerToSeekPlayer(steering);
+	//steerToSeekPlayer(steering);
 	//steerToFleePlayer(steering);
 	//steerToPursuePlayer(steering);
+
+	// make a decision about which behaviour to use
+	// TODO: be careful of makeDecision returning null
+
+	Action* action = static_cast<Action*>(decisionTree->makeDecision());
+	switch (action->getLabel())
+	{
+	case ACTION_SET::SEEK:
+			steerToSeekPlayer(steering);
+			break;	
+	case ACTION_SET::DO_NOTHING:
+			break;
+		default:
+			break;
+	}
 
 	body->Update(deltaTime, steering);
 
@@ -162,4 +177,20 @@ void Character::steerToFleePlayer(SteeringOutput* steering)
 	{
 		delete steering_algorithm;
 	}
+}
+
+bool Character::readDecisionTreeFromFile(string file)
+{
+	if (file == "blinky")
+	{
+		//if player is within 2 units of blinky, blinky will seek player
+		// otherwise, do nothing
+
+		Action* trueNode = new Action(ACTION_SET::SEEK);
+		Action* falseNode = new Action(ACTION_SET::DO_NOTHING);
+		decisionTree = new PlayerInRange(trueNode, falseNode, this);
+		
+		return true;
+	}
+	return false;
 }

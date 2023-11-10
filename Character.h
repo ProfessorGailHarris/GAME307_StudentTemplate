@@ -8,6 +8,9 @@
 #include "Seek.h"
 #include "Flee.h"
 
+#include "Action.h"
+#include "PlayerInRange.h"
+
 using namespace std;
 
 class Character
@@ -16,11 +19,14 @@ private:
 	class KinematicBody* body;
 	class Scene* scene;
 
+	DecisionTreeNode* decisionTree;
+
 public:
 	Character()
 	{
 		body = NULL;
 		scene = NULL;
+		decisionTree = NULL;
 	};
 
 	~Character()
@@ -37,6 +43,11 @@ public:
 
 	void steerToSeekPlayer(SteeringOutput* steering);
 	void steerToFleePlayer(SteeringOutput* steering);
+
+	bool readDecisionTreeFromFile(string file);
+
+	Vec3 getPos() const { return body->getPos(); }
+	Vec3 getPlayerPos() const { return scene->game->getPlayer()->getPos(); }
 };
 
 #endif

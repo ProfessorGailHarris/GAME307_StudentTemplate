@@ -52,6 +52,11 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 
+	if (!blinky->readDecisionTreeFromFile("blinky"))
+	{
+		return false;
+	}
+
 	// set up myNPC
 	Vec3 position = Vec3(5.0f, 3.5f, 0.0f);
 	float orientation = 0.0f;
