@@ -23,6 +23,7 @@ void Scene2::createTiles(int rows, int cols )
 		{
 			//create tiles and nodes
 			n = new Node(label);
+			sceneNodes.push_back(n);
 			Vec3 tilePos = Vec3(x, y, 0.0f);
 			t = new Tile(n, tilePos, tileWidth, tileHeight, this);
 			tiles[i][j] = t;
@@ -31,6 +32,61 @@ void Scene2::createTiles(int rows, int cols )
 		}
 		j = 0;
 		i++;
+	}
+}
+
+void Scene2::calculateConnectionWeights()
+{
+	// This is a private method
+	// I'm assuming I'm smart enough to only call this
+	// after having properly created tiles matrix
+	int rows = tiles.size();
+	int cols = tiles[0].size();
+
+	for( int i=0; i < rows; i++ )
+	{
+		for( int j=0; j < cols; j++ )
+		{
+			//          i+1,j
+			//   i,j-1    i,j   i,j+1
+			//          i-1,j
+
+			Tile* fromTile = tiles[i][j];
+			int from = fromTile->getNode()->getLabel();
+
+			// left is i,j-1
+			if ( j > 0 )
+			{
+				int to = tiles[i][j-1]->getNode()->getLabel();
+				graph->addWeightedConnection(from, to, tileWidth);
+			}
+
+			// right is i,j+1
+			if ( j < cols - 1 )
+			{
+				int to = tiles[i][j+1]->getNode()->getLabel();
+				graph->addWeightedConnection(from, to, tileWidth);
+			}
+
+			// above is i+1, j
+			if ( i < rows - 1 )
+			{
+				int to = tiles[i+1][j]->getNode()->getLabel();
+				graph->addWeightedConnection(from, to, tileHeight);
+			}
+
+			// below is i-1, j
+			if ( i > 0 )
+			{
+				int to = tiles[i-1][j]->getNode()->getLabel();
+				graph->addWeightedConnection(from, to, tileHeight);
+			}
+
+			// N.B. weight of each connection could depend on
+			// the context of the "from" or "to" tile.
+			// E.g. if a tile is blocked,
+			// or represents terrain that is hard to navigate.
+		}
 	}
 }
 
@@ -64,14 +120,6 @@ bool Scene2::OnCreate()
 	createTiles(rows, cols);
 
 	// let's set up a graph and test it out
-	int count = 5;
-	sceneNodes.resize(count);
-	// create some nodes
-	// TODO delete them later
-	for (int i = 0; i < count; i++)
-	{
-		sceneNodes[i] = new Node(i);
-	}
 
 	// create the graph
 	graph = new Graph();
@@ -81,38 +129,23 @@ bool Scene2::OnCreate()
 		// i'm lazy about error messages
 	}
 
-	//               0
-	//               |
-	//      1 -------2 ---------3
-	//               |
-	//               4
+	// create connections
+	calculateConnectionWeights();
 
-	graph->addWeightedConnection(
-		sceneNodes[0]->getLabel(),
-		sceneNodes[2]->getLabel(),
-		1.0f
-	);
-
-	graph->addWeightedConnection(1, 2, 1.0f);
-
-	graph->addWeightedConnection(2, 0, 1.0f);
-	graph->addWeightedConnection(2, 1, 1.0f);
-	graph->addWeightedConnection(2, 3, 1.0f);
-	graph->addWeightedConnection(2, 4, 1.0f);
-
-	graph->addWeightedConnection(3, 2, 1.0f);
-
-	graph->addWeightedConnection(4, 2, 1.0f);
-
+	// test some connections
 	std::cout << "Scene 2" << std::endl;
-
-	int myNode = 2;
-
-	std::cout << "Neighbours of " << myNode << std::endl;
-
-	for (int nodeLabel : graph->neighbours(myNode))
+	std::vector<int> testNodes;
+	testNodes = {0, 3, 4, 7, 11, 15, 24};
+	auto it = testNodes.begin();
+	while( it != testNodes.end() )
 	{
-		std::cout << "node " << nodeLabel << std::endl;
+		int myNode = (*it);
+		std::cout << "neighbours of " << myNode << std::endl;
+		for (auto nodeLabel : graph->neighbours(myNode))
+		{
+			std::cout << "node " << nodeLabel << std::endl;
+		}
+		it++;
 	}
 
 	std::vector<int> path = graph->Dijkstra(0, 4);
