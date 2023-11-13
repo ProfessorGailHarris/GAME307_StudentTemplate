@@ -24,6 +24,7 @@ private:
 
 	std::vector< std::vector <Tile*> > tiles;
 	void createTiles(int rows, int cols);
+	void calculateConnectionWeights();
 
 public:
 	Scene2(SDL_Window* sdlWindow, GameManager* game_);

@@ -1,7 +1,7 @@
 #ifndef STATIC_BODY_H
 #define STATIC_BODY_H
 #include "Body.h"
-#include "KinematicSteeringOutput.h";
+#include "KinematicSteeringOutput.h"
 class StaticBody :
     public Body
 {
