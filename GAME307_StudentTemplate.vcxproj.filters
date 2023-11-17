@@ -31,6 +31,8 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="PlayerInRange.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
+    <ClCompile Include="Condition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -63,6 +65,8 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="Decision.h" />
     <ClInclude Include="PlayerInRange.h" />
+    <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="Condition.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">

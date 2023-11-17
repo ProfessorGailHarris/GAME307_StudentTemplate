@@ -136,6 +136,7 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Condition.cpp" />
     <ClCompile Include="Decision.cpp" />
     <ClCompile Include="DecisionTreeNode.cpp" />
     <ClCompile Include="Flee.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="StaticBody.cpp" />
     <ClCompile Include="SteeringBehaviour.cpp" />
     <ClCompile Include="Steering\KinematicBody.cpp" />
@@ -162,6 +164,7 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Condition.h" />
     <ClInclude Include="Decision.h" />
     <ClInclude Include="DecisionTreeNode.h" />
     <ClInclude Include="Flee.h" />
@@ -176,6 +179,7 @@
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Seek.h" />
+    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="StaticBody.h" />
     <ClInclude Include="SteeringBehaviour.h" />
     <ClInclude Include="Steering\KinematicBody.h" />

@@ -11,6 +11,9 @@
 #include "Action.h"
 #include "PlayerInRange.h"
 
+#include "StateMachine.h"
+#include "Condition.h"
+
 using namespace std;
 
 class Character
@@ -20,6 +23,7 @@ private:
 	class Scene* scene;
 
 	DecisionTreeNode* decisionTree;
+	StateMachine* stateMachine;
 
 public:
 	Character()
@@ -27,6 +31,7 @@ public:
 		body = NULL;
 		scene = NULL;
 		decisionTree = NULL;
+		stateMachine = NULL;
 	};
 
 	~Character()
@@ -45,6 +50,7 @@ public:
 	void steerToFleePlayer(SteeringOutput* steering);
 
 	bool readDecisionTreeFromFile(string file);
+	bool readStateMachineFromFile(string file);
 
 	Vec3 getPos() const { return body->getPos(); }
 	Vec3 getPlayerPos() const { return scene->game->getPlayer()->getPos(); }

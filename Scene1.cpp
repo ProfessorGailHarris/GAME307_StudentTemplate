@@ -52,7 +52,8 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 
-	if (!blinky->readDecisionTreeFromFile("blinky"))
+	//if (!blinky->readDecisionTreeFromFile("blinky"))
+	if (!blinky->readStateMachineFromFile("blinky"))
 	{
 		return false;
 	}

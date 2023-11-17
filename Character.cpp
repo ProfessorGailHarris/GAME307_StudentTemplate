@@ -68,16 +68,32 @@ void Character::Update(float deltaTime)
 	// make a decision about which behaviour to use
 	// TODO: be careful of makeDecision returning null
 
-	Action* action = static_cast<Action*>(decisionTree->makeDecision());
-	switch (action->getLabel())
+	if (decisionTree)
 	{
-	case ACTION_SET::SEEK:
+		Action* action = static_cast<Action*>(decisionTree->makeDecision());
+		switch (action->getLabel())
+		{
+		case ACTION_SET::SEEK:
 			steerToSeekPlayer(steering);
-			break;	
-	case ACTION_SET::DO_NOTHING:
+			break;
+		case ACTION_SET::DO_NOTHING:
 			break;
 		default:
 			break;
+		}
+	}
+
+	if (stateMachine)
+	{
+		stateMachine->update();
+		switch (stateMachine->getCurrentStateName())
+		{
+		case STATE::SEEK:
+			steerToSeekPlayer(steering);
+			break;
+		case STATE::DO_NOTHING:
+			break;
+		}
 	}
 
 	body->Update(deltaTime, steering);
@@ -193,4 +209,29 @@ bool Character::readDecisionTreeFromFile(string file)
 		return true;
 	}
 	return false;
+}
+
+bool Character::readStateMachineFromFile(string file)
+{
+	stateMachine = new StateMachine();
+	if (!stateMachine) { return false; }
+
+	State* seekPlayer = new State(STATE::SEEK);
+	State* doNothing = new State(STATE::DO_NOTHING);
+
+	seekPlayer->addTransition(
+		new Transition(
+			new ConditionOutOfRange(this),
+			doNothing
+		)
+	);
+
+	doNothing->addTransition(
+		new Transition(
+			new ConditionIfInRange(this),
+			seekPlayer
+		)
+	);
+
+	stateMachine->setInitialState(seekPlayer);
 }
