@@ -234,4 +234,6 @@ bool Character::readStateMachineFromFile(string file)
 	);
 
 	stateMachine->setInitialState(seekPlayer);
+
+	return true;
 }
