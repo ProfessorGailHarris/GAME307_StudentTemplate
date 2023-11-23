@@ -11,13 +11,22 @@ OBJS += Window.o
 OBJS += Steering/KinematicBody.o
 OBJS += Steering/SteeringOutput.o
 
-#OBJS += Graph.o
-#OBJS += Scene2.o
-#OBJS += Tile.o
-#OBJS += KinematicSteeringOutput.o
-#OBJS += SteeringBehaviour.o
-#OBJS += StaticBody.o
-#OBJS += Seek.o
+OBJS += Graph.o
+OBJS += Scene2.o
+OBJS += Tile.o
+OBJS += KinematicSteeringOutput.o
+OBJS += SteeringBehaviour.o
+OBJS += StaticBody.o
+OBJS += Seek.o
+OBJS += Flee.o
+OBJS += KinematicSeek.o
+OBJS += Node.o
+OBJS += DecisionTreeNode.o
+OBJS += Action.o
+OBJS += Decision.o
+OBJS += PlayerInRange.o
+OBJS += StateMachine.o
+OBJS += Condition.o
 
 SDLCFG := sdl2-config
 
