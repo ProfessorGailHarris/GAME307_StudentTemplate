@@ -6,10 +6,10 @@
 class Condition
 {
 protected:
-	class Character* owner;
+	class SafeCharacter* owner;
 
 public:
-	Condition(Character* owner_)
+	Condition(SafeCharacter* owner_)
 	{
 		owner = owner_;
 	}
@@ -21,7 +21,7 @@ public:
 class ConditionIfInRange : public Condition
 {
 public:
-	ConditionIfInRange(Character* owner_) : Condition{ owner_ }
+	ConditionIfInRange(SafeCharacter* owner_) : Condition{ owner_ }
 	{
 
 	}
@@ -32,7 +32,7 @@ public:
 class ConditionOutOfRange : public Condition
 {
 public:
-	ConditionOutOfRange(Character* owner_) : Condition{ owner_ }
+	ConditionOutOfRange(SafeCharacter* owner_) : Condition{ owner_ }
 	{
 
 	}

@@ -16,11 +16,14 @@
 
 using namespace std;
 
+class SafeCharacter;
+
 class Character
 {
 private:
 	class KinematicBody* body;
 	class Scene* scene;
+	SafeCharacter* myAdapter;
 
 	DecisionTreeNode* decisionTree;
 	StateMachine* stateMachine;

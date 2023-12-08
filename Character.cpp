@@ -1,8 +1,11 @@
 #include "Character.h"
+#include "SafeCharacter.h"
 
 bool Character::OnCreate(Scene* scene_)
 {
 	scene = scene_;
+
+	myAdapter = new SafeCharacter(this);
 
 	// Configure and instantiate the body to use for the demo
 	if (!body)
@@ -221,14 +224,14 @@ bool Character::readStateMachineFromFile(string file)
 
 	seekPlayer->addTransition(
 		new Transition(
-			new ConditionOutOfRange(this),
+			new ConditionOutOfRange(myAdapter),
 			doNothing
 		)
 	);
 
 	doNothing->addTransition(
 		new Transition(
-			new ConditionIfInRange(this),
+			new ConditionIfInRange(myAdapter),
 			seekPlayer
 		)
 	);

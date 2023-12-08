@@ -148,6 +148,7 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PlayerBody.cpp" />
     <ClCompile Include="PlayerInRange.cpp" />
+    <ClCompile Include="SafeCharacter.cpp" />
     <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Seek.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="PlayerBody.h" />
     <ClInclude Include="PlayerInRange.h" />
+    <ClInclude Include="SafeCharacter.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Scene2.h" />
