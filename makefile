@@ -27,6 +27,7 @@ OBJS += Decision.o
 OBJS += PlayerInRange.o
 OBJS += StateMachine.o
 OBJS += Condition.o
+OBJS += SafeCharacter.o
 
 SDLCFG := sdl2-config
 
