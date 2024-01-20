@@ -7,7 +7,7 @@
 #include "Character.h"
 
 #include "StaticBody.h"
-
+#include "KinematicSeek.h"
 
 using namespace MATH;
 class Scene1 : public Scene {

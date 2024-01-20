@@ -1,5 +1,4 @@
 #include "Scene1.h"
-#include "KinematicSeek.h"
 
 Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 	window = sdlWindow_;
@@ -86,7 +85,16 @@ bool Scene1::OnCreate() {
 	return true;
 }
 
-void Scene1::OnDestroy() {}
+void Scene1::OnDestroy() 
+{
+	if (myNPC->getTexture())
+		SDL_DestroyTexture(myNPC->getTexture());
+	if (blinky)
+	{
+		blinky->OnDestroy();
+		delete blinky;
+	}
+}
 
 void Scene1::Update(const float deltaTime) {
 
@@ -94,10 +102,7 @@ void Scene1::Update(const float deltaTime) {
 
 	// create seek algorithm
 	KinematicSeek* steeringAlgorithm;
-	// fake target, for safety
-	Body* target = new Body();
-	target->setPos(game->getPlayer()->getPos());
-	steeringAlgorithm = new KinematicSeek(myNPC, target);
+	steeringAlgorithm = new KinematicSeek(myNPC, game->getPlayer());
 	steering = steeringAlgorithm->getSteering();
 
 	myNPC->Update(deltaTime, steering);
@@ -107,6 +112,9 @@ void Scene1::Update(const float deltaTime) {
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
+
+	// Clean up memory
+	if (steeringAlgorithm) delete steeringAlgorithm;
 }
 
 void Scene1::Render() {

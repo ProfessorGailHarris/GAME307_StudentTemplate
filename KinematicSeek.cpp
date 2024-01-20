@@ -1,6 +1,6 @@
 #include "KinematicSeek.h"
 
-KinematicSeek::KinematicSeek(Body* character_, Body* target_)
+KinematicSeek::KinematicSeek(const Body* character_, const Body* target_)
 {
 	character = character_;
 	target = target_;

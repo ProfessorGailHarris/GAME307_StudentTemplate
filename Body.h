@@ -45,20 +45,20 @@ public:
 	virtual ~Body();
     virtual void Update(float deltaTime);
     virtual void ApplyForce(Vec3 force_);
-    virtual Vec3 getPos() { return pos; }
-    virtual Vec3 getVel() { return vel; }
-    virtual Vec3 getAccel() { return accel; }
-    virtual float getMass() { return mass; }
-    virtual float getOrientation() { return orientation; }
-    virtual float getRotation() { return rotation; }
-    virtual float getAngular() { return angular; }
-    virtual float getMaxSpeed() { return maxSpeed; }
-    virtual float getMaxAcceleration() { return maxAcceleration; }
-    virtual float getMaxRotation() { return maxRotation; }
-    virtual float getMaxAngular() { return maxAngular; }
+    virtual Vec3 getPos() const { return pos; }
+    virtual Vec3 getVel() const { return vel; }
+    virtual Vec3 getAccel() const { return accel; }
+    virtual float getMass() const { return mass; }
+    virtual float getOrientation() const { return orientation; }
+    virtual float getRotation() const { return rotation; }
+    virtual float getAngular() const { return angular; }
+    virtual float getMaxSpeed() const { return maxSpeed; }
+    virtual float getMaxAcceleration() const { return maxAcceleration; }
+    virtual float getMaxRotation() const { return maxRotation; }
+    virtual float getMaxAngular() const { return maxAngular; }
 
     virtual void setImage(SDL_Surface* image_) { image = image_; }
-    virtual SDL_Surface* getImage() { return image; }
+    virtual SDL_Surface* getImage() const { return image; }
 
     virtual void setImageSizeWorldCoords(Vec3 imageSizeWorldCoords_)
     {
@@ -66,7 +66,7 @@ public:
 	}
 
     virtual void setTexture( SDL_Texture* texture_ ) { texture = texture_; }
-    virtual SDL_Texture* getTexture() { return texture; }
+    virtual SDL_Texture* getTexture() const { return texture; }
 
     virtual void HandleEvents( const SDL_Event& event );
 

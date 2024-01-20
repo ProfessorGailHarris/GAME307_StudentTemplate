@@ -4,6 +4,7 @@ void StaticBody::Update(float deltaTime, KinematicSteeringOutput* steering)
 {
 	// can do this at beginning of end
 	Body::Update(deltaTime);
+	newOrientation();
 
 	//set the value based on the steering input
 	if (steering == nullptr)
@@ -21,8 +22,6 @@ void StaticBody::Update(float deltaTime, KinematicSteeringOutput* steering)
 		vel = VMath::normalize(vel) * maxSpeed;
 
 	rotation = rotation > maxRotation ? maxRotation : rotation;
-
-	newOrientation();
 }
 
 void StaticBody::newOrientation()

@@ -12,11 +12,11 @@ class KinematicSeek
 {
 private:
 	KinematicSteeringOutput* result;
-	Body* character;
-	Body* target;
+	const Body* character;
+	const Body* target;
 
 public:
-	KinematicSeek(Body* character_, Body* target_);
+	KinematicSeek(const Body* character_, const Body* target_);
 	virtual ~KinematicSeek();
 
 	KinematicSteeringOutput* getSteering();
