@@ -21,13 +21,10 @@ public:
 		scene = NULL;
 	};
 
-	~Character()
-	{
-		if (body) delete body;
-	};
+	~Character() {};
 
 	bool OnCreate(Scene* scene_);
-	void OnDestroy() {};
+	void OnDestroy();
 	bool setTextureWith(string file);
 	void Update(float time);
 	void HandleEvents(const SDL_Event& event);
