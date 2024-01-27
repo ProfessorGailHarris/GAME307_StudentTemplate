@@ -36,6 +36,11 @@ bool Character::OnCreate(Scene* scene_)
 	return true;
 }
 
+void Character::OnDestroy()
+{
+	if (body) delete body;
+};
+
 bool Character::setTextureWith(string file)
 {
 	SDL_Surface* image = IMG_Load(file.c_str());
@@ -54,7 +59,6 @@ bool Character::setTextureWith(string file)
 	body->setTexture(texture);
 	return true;
 }
-
 
 void Character::Update(float deltaTime)
 {

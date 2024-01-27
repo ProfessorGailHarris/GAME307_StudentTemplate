@@ -12,13 +12,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 	blinky = nullptr;
 }
 
-Scene1::~Scene1(){
-	if (blinky) 
-	{
-		blinky->OnDestroy();
-		delete blinky;
-	}
-}
+Scene1::~Scene1() {}
 
 bool Scene1::OnCreate() {
 	int w, h;
@@ -54,7 +48,14 @@ bool Scene1::OnCreate() {
 	return true;
 }
 
-void Scene1::OnDestroy() {}
+void Scene1::OnDestroy() 
+{
+	if (blinky)
+	{
+		blinky->OnDestroy();
+		delete blinky;
+	}
+}
 
 void Scene1::Update(const float deltaTime) {
 	// Calculate and apply any steering for npc's
