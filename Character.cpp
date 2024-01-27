@@ -38,7 +38,14 @@ bool Character::OnCreate(Scene* scene_)
 
 void Character::OnDestroy()
 {
-	if (body) delete body;
+	if (body)
+	{
+		if (body->getTexture())
+		{
+			SDL_DestroyTexture(body->getTexture());
+		}
+		delete body;
+	}
 };
 
 bool Character::setTextureWith(string file)
@@ -56,7 +63,9 @@ bool Character::setTextureWith(string file)
 		std::cerr << "Can't create texture" << std::endl;
 		return false;
 	}
+	if (body->getTexture()) SDL_DestroyTexture(body->getTexture());
 	body->setTexture(texture);
+	SDL_FreeSurface(image);
 	return true;
 }
 

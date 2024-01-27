@@ -21,6 +21,7 @@ public:
     PlayerBody() : Body{}
     {
         game = nullptr;
+        texture = NULL;
     }
 
     PlayerBody(
@@ -55,11 +56,21 @@ public:
     // use the base class versions of getters
 
     bool OnCreate();
-    void Render( float scale = 1.0f );
+    void OnDestroy();
+    void Render( float scale = 1.0f ) const;
     void HandleEvents( const SDL_Event& event );
     void Update( float deltaTime );
     void resetToOrigin();
-    void setTexture( SDL_Texture* texture_ ) { texture = texture_; }
+    void setImage(SDL_Surface* image_)
+    {
+        if (image) SDL_FreeSurface(image);
+        image = image_; 
+    }
+    void setTexture( SDL_Texture* texture_ )
+    {
+        if (texture) SDL_DestroyTexture(texture);
+        texture = texture_; 
+    }
     
 };
 

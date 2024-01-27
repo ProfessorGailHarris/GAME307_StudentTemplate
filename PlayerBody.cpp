@@ -24,7 +24,16 @@ bool PlayerBody::OnCreate()
     return true;
 }
 
-void PlayerBody::Render( float scale )
+void PlayerBody::OnDestroy()
+{
+    if (image) SDL_FreeSurface(image);
+    if (texture)
+    {
+        SDL_DestroyTexture(texture);
+    }
+}
+
+void PlayerBody::Render( float scale ) const
 {
     // This is why we need game in the constructore, to get the renderer, etc.
     SDL_Renderer *renderer = game->getRenderer();
