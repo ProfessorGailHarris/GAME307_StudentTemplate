@@ -5,6 +5,7 @@
 
 #include "Scene.h"
 #include "KinematicBody.h"
+#include "Seek.h"
 
 using namespace std;
 

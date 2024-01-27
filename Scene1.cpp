@@ -102,7 +102,7 @@ void Scene1::Update(const float deltaTime) {
 	myNPC->Update(deltaTime, steering);
 
 	// Calculate and apply any steering for npc's
-	//blinky->Update(deltaTime);
+	blinky->Update(deltaTime);
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
@@ -133,10 +133,10 @@ void Scene1::Render() {
 	float orientation = myNPC->getOrientation();
 	float degrees = orientation * 180.0f / M_PI;
 
-	SDL_RenderCopyEx(renderer, myNPC->getTexture(), nullptr, &rect, degrees, nullptr, SDL_FLIP_NONE);
+	//SDL_RenderCopyEx(renderer, myNPC->getTexture(), nullptr, &rect, degrees, nullptr, SDL_FLIP_NONE);
 
 	// render any npc's
-	//blinky->render(0.15f);
+	blinky->render(0.15f);
 
 	// render the player
 	game->RenderPlayer(0.10f);
