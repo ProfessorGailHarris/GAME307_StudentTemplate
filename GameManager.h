@@ -27,23 +27,24 @@ private:
     Uint32 changeSceneEventType; // event type number for user defined events
     bool launched = true;
 
+	void LoadScene(int i);
+	bool ValidateCurrentScene();
+
 public:
 	GameManager();
 	~GameManager();
 	bool OnCreate();
 	void OnDestroy();
-	float getSceneHeight();
-	float getSceneWidth();
-	Matrix4 getProjectionMatrix();
-    PlayerBody* getPlayer(){ return player; }
-	Uint32 getChangeScene() { return changeSceneEventType; }
+	float getSceneHeight() const;
+	float getSceneWidth() const;
+	Matrix4 getProjectionMatrix() const;
+    PlayerBody* getPlayer() const { return player; }
+	Uint32 getChangeScene() const { return changeSceneEventType; }
 
 	SDL_Renderer* getRenderer();
 	void RenderPlayer(float scale = 1.0f);
 	void Run();
-    void LoadScene( int i );
     void handleEvents();
-    bool ValidateCurrentScene();
     
 };
 #endif

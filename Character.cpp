@@ -79,7 +79,7 @@ void Character::HandleEvents(const SDL_Event& event)
 	// handle events here, if needed
 }
 
-void Character::render(float scale)
+void Character::render(float scale) const
 {
 	SDL_Renderer* renderer = scene->game->getRenderer();
 	Matrix4 projectionMatrix = scene->getProjectionMatrix();

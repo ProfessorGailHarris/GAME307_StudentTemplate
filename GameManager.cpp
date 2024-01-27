@@ -170,13 +170,13 @@ void GameManager::OnDestroy(){
 	if (currentScene) delete currentScene;
 }
 
-float GameManager::getSceneHeight()
+float GameManager::getSceneHeight() const
 { return currentScene->getyAxis(); }
 
-float GameManager::getSceneWidth()
+float GameManager::getSceneWidth() const
 { return currentScene->getxAxis(); }
 
-Matrix4 GameManager::getProjectionMatrix() 
+Matrix4 GameManager::getProjectionMatrix() const
 { return currentScene->getProjectionMatrix(); }
 
 SDL_Renderer* GameManager::getRenderer()
