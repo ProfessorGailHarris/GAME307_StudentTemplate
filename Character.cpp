@@ -64,17 +64,41 @@ bool Character::setTextureWith(string file)
 void Character::Update(float deltaTime)
 {
 	// create a new overall steering output
-	SteeringOutput* steering;
+	SteeringOutput* steering = new SteeringOutput();	// initialized to zero
 
-	// set the target for steering; target is used by the steerTo... functions
-	// (often the target is the Player)
-
-	// using the target, calculate and set values in the overall steering output
-	SteeringBehaviour* steering_algorithm = new Seek(body, scene->game->getPlayer());
-	steering = steering_algorithm->getSteering();
+	steerToSeekPlayer(steering);
 
 	// apply the steering to the equations of motion
 	body->Update(deltaTime, steering);
+
+	if (steering)
+	{
+		delete steering;
+	}
+}
+
+// private method!!
+// pass by reference!!!!
+void Character::steerToSeekPlayer(SteeringOutput* steering)
+{
+	// set the target for steering; target is used by the steerTo... functions
+	// (often the target is the Player)
+
+	std::vector<SteeringOutput*> steering_outputs;
+
+	// using the target, calculate and set values in the overall steering output
+	SteeringBehaviour* steering_algorithm = new Seek(body, scene->game->getPlayer());
+	// create some more algorithms and push their get steering onto the outputs list
+
+	steering_outputs.push_back(steering_algorithm->getSteering());
+	// add together some steering results
+	for (int i = 0; i < steering_outputs.size(); i++)
+	{
+		if (steering_outputs[i])
+		{
+			*steering += *steering_outputs[i];
+		}
+	}
 
 	// clean up memory
 	// (delete only those objects created in this function)
