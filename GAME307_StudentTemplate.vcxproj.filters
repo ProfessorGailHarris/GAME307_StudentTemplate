@@ -5,8 +5,6 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="PlayerBody.cpp" />
     <ClCompile Include="Scene1.cpp" />
-    <ClCompile Include="Steering\KinematicBody.cpp" />
-    <ClCompile Include="Steering\SteeringOutput.cpp" />
     <ClCompile Include="Window.cpp">
       <Filter>GAME</Filter>
     </ClCompile>
@@ -19,11 +17,28 @@
     <ClCompile Include="Main.cpp">
       <Filter>GAME</Filter>
     </ClCompile>
-    <ClCompile Include="StaticBody.cpp" />
-    <ClCompile Include="KinematicSteeringOutput.cpp" />
-    <ClCompile Include="KinematicSeek.cpp" />
-    <ClCompile Include="SteeringBehaviour.cpp" />
     <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="Steering\KinematicBody.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicSeek.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicSteeringOutput.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticBody.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringBehaviour.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering\SteeringOutput.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene2.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Graph.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -31,8 +46,6 @@
     <ClInclude Include="PlayerBody.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
-    <ClInclude Include="Steering\KinematicBody.h" />
-    <ClInclude Include="Steering\SteeringOutput.h" />
     <ClInclude Include="Window.h">
       <Filter>GAME</Filter>
     </ClInclude>
@@ -42,15 +55,35 @@
     <ClInclude Include="GameManager.h">
       <Filter>GAME</Filter>
     </ClInclude>
-    <ClInclude Include="StaticBody.h" />
-    <ClInclude Include="KinematicSteeringOutput.h" />
-    <ClInclude Include="KinematicSeek.h" />
-    <ClInclude Include="SteeringBehaviour.h" />
     <ClInclude Include="Seek.h" />
+    <ClInclude Include="Steering\KinematicBody.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="KinematicSeek.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="KinematicSteeringOutput.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticBody.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringBehaviour.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\SteeringOutput.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene2.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Graph.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">
       <UniqueIdentifier>{bac93a26-f408-4ab3-9f1c-7ef1883f16e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Steering">
+      <UniqueIdentifier>{1fc8d94b-e46a-4620-90a8-a1948f2d4984}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
