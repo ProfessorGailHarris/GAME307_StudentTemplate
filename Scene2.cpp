@@ -6,14 +6,30 @@ Scene2::Scene2(SDL_Window* sdlWindow, GameManager* game_)
 	game = game_;
 	renderer = SDL_GetRenderer(window);
 	graph = NULL;
+	xAxis = 25.0f;
+	yAxis = 15.0f;
 }
 
 Scene2::~Scene2()
 {
 }
 
+void Scene2::createTiles()
+{
+	singleTile = new Tile(Vec3(4.5f, 8.2f, 0.0f), 2.0, 1.0, this);
+}
+
 bool Scene2::OnCreate()
 {
+	int w, h;
+	SDL_GetWindowSize(window, &w, &h);
+
+	Matrix4 ndc = MMath::viewportNDC(w,h);
+	Matrix4 ortho = MMath::orthographic(0.0f, xAxis, 0.0f, yAxis, 0.0f, 1.0f);
+	projectionMatrix = ndc * ortho;
+
+	createTiles();
+
 	// let's set up a graph and test it out
 	int count = 5;
 	sceneNodes.resize(count);
@@ -77,6 +93,12 @@ void Scene2::Update(const float time)
 
 void Scene2::Render()
 {
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	SDL_RenderClear(renderer);
+
+	singleTile->Render();
+	
+	SDL_RenderPresent(renderer);
 }
 
 void Scene2::HandleEvents(const SDL_Event& event)
