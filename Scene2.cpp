@@ -59,6 +59,11 @@ bool Scene2::OnCreate()
 		std::cout << "node " << n->getLabel() << "\n";
 	}
 
+	std::vector<Node*> path = graph->findPath(
+		sceneNodes[0],
+		sceneNodes[4]
+	);
+
 	return true;
 }
 

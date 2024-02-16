@@ -7,6 +7,7 @@
 #include <map>
 #include "Node.h"
 #include <iostream>
+#include <queue>
 
 class Graph
 {
@@ -26,7 +27,7 @@ public:
 	Node* getNode(int label) { return node[label]; }
 	void addWeightedConnection(Node* fromNode, Node* toNode, float weight);
 	std::vector<Node*> neighbours(Node* fromNode);
-	std::vector<Node*> findPath(Node* startNode, Node* goal);
+	std::vector<Node*> findPath(Node* startNode, Node* goalNode);
 
 };
 

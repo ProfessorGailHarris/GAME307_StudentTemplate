@@ -60,8 +60,61 @@ std::vector<Node*> Graph::neighbours(Node* fromNode)
 	return result;
 }
 
-std::vector<Node*> Graph::findPath(Node* startNode, Node* goal)
+struct NodeAndPriority
 {
+	Node* node;
+	float priority;
+
+	bool operator()(NodeAndPriority const& lhs, NodeAndPriority const& rhs)
+	{
+		return lhs.priority > rhs.priority;
+	}
+};
+
+std::vector<Node*> Graph::findPath(Node* startNode, Node* goalNode)
+{
+	// declarations
+	float new_cost;
+	float priority;
+	Node* currentNode = startNode;
+
+	//frontier
+	std::priority_queue<NodeAndPriority, std::deque<NodeAndPriority>, NodeAndPriority > frontier;
+	frontier.push( NodeAndPriority { currentNode, 0.0f } );
+
+	//track solution path 
+	std::vector<int> came_from;
+	// came_from[currentNode->getLabel()]
+	came_from.resize(numNodes(), -1);
+
+	// cost so far storage
+	// use map, not vectory, to allow detecting if a node has an entry
+	int start = startNode->getLabel();
+	int goal = goalNode->getLabel();
+	std::map<int, float> cost_so_far;
+	cost_so_far[start] = 0.0f;
+	
 	// TODO
-	return std::vector<Node*>();
+	// loop through the frontier, while it is not empty
+	{
+		// get the top node, AND pop it off
+		// if its the goal, then break out
+
+		// for the neighbours of current node
+		{
+			// calculate new cost
+			// if you add heuristic() then you've got A*
+			// if neighbour is not an index in cost_so_far OR new cost is lower
+			{
+				// found a better path, so update data structures
+			}
+		}
+	}
+
+	// Follow the breadcrumbs in came_from to produce path
+	std::vector<Node*> path = {};
+	// TODO
+
+
+	return path;
 }
