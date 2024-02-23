@@ -1,7 +1,7 @@
 #include "Tile.h"
 
-Tile::Tile(Vec3 pos_, float width_, float height_, Scene* scene_) :
-pos{pos_}, width{width_}, height{height_}
+Tile::Tile(Node* node_, Vec3 pos_, float width_, float height_, Scene* scene_) :
+node{node_}, pos{pos_}, width{width_}, height{height_}
 {
 	r = 0;
 	g = 255;
