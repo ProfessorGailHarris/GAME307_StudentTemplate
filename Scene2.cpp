@@ -61,6 +61,46 @@ void Scene2::createTiles()
 	}
 }
 
+void Scene2::calculateConnectionWeights()
+{
+	// I'm smart enough to only call this
+	// after having properly created the tiles matrix
+	int rows = tiles.size();
+	int cols = tiles[0].size();
+
+	for( int i=0; i < rows; i++)
+	{
+		for( int j=0; j < cols; j++)
+		{
+		//tiles[i][j]->getNode();
+		//
+		//          i+1, j
+		//   i,j-1    i, j      i,j+1
+		//          i-1, j
+		Tile* fromTile = tiles[i][j];
+		Node* from = fromTile->getNode();
+
+		// left
+		if ( j > 0 )
+		{
+			Node* to = tiles[i][j-1]->getNode();
+			graph->addWeightedConnection(from, to, tileWidth);
+		}
+
+		// right
+
+		// above
+		if ( i < rows - 1 )
+		{
+			Node* to = tiles[i+1][j]->getNode();
+			graph->addWeightedConnection(from, to, tileHeight);
+		}
+
+		// below
+		}
+	}
+}
+
 bool Scene2::OnCreate()
 {
 	int w, h;
@@ -79,6 +119,8 @@ bool Scene2::OnCreate()
 		// TODO error message
 		return false;
 	}
+
+	calculateConnectionWeights();
 
 	return true;
 }
