@@ -17,7 +17,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>GAME</Filter>
     </ClCompile>
-    <ClCompile Include="Seek.cpp" />
     <ClCompile Include="Steering\KinematicBody.cpp">
       <Filter>Steering</Filter>
     </ClCompile>
@@ -37,8 +36,18 @@
       <Filter>Steering</Filter>
     </ClCompile>
     <ClCompile Include="Scene2.cpp" />
-    <ClCompile Include="Node.cpp" />
-    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Graph.cpp">
+      <Filter>Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Seek.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -55,7 +64,6 @@
     <ClInclude Include="GameManager.h">
       <Filter>GAME</Filter>
     </ClInclude>
-    <ClInclude Include="Seek.h" />
     <ClInclude Include="Steering\KinematicBody.h">
       <Filter>Steering</Filter>
     </ClInclude>
@@ -75,8 +83,18 @@
       <Filter>Steering</Filter>
     </ClInclude>
     <ClInclude Include="Scene2.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="Graph.h" />
+    <ClInclude Include="Graph.h">
+      <Filter>Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="Seek.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">
@@ -84,6 +102,9 @@
     </Filter>
     <Filter Include="Steering">
       <UniqueIdentifier>{1fc8d94b-e46a-4620-90a8-a1948f2d4984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pathfinding">
+      <UniqueIdentifier>{30c33545-754b-42f2-8cae-ad26c51165e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
