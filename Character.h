@@ -8,6 +8,7 @@
 #include "Seek.h"
 
 #include "Action.h"
+#include "PlayerInRange.h"
 
 using namespace std;
 
@@ -39,6 +40,8 @@ public:
 	void render(float scale = 1.0f);
 
 	bool readDecisionTreeFromFile(string file);
+	Vec3 getPos() const { return body->getPos(); }
+	Vec3 getPlayerPos() const { return scene->game->getPlayer()->getPos(); }
 };
 
 #endif

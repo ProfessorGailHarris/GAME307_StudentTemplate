@@ -74,7 +74,7 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 
-	if (!blinky->readDecisionTreeFromFile("blinky"))
+	if (!blinky->readDecisionTreeFromFile("seekIfInRange"))
 	{
 		return false;
 	}

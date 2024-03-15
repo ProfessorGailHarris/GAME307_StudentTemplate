@@ -50,6 +50,8 @@
     </ClCompile>
     <ClCompile Include="DecisionTreeNode.cpp" />
     <ClCompile Include="Action.cpp" />
+    <ClCompile Include="Decision.cpp" />
+    <ClCompile Include="PlayerInRange.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -99,6 +101,8 @@
     </ClInclude>
     <ClInclude Include="DecisionTreeNode.h" />
     <ClInclude Include="Action.h" />
+    <ClInclude Include="Decision.h" />
+    <ClInclude Include="PlayerInRange.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">
