@@ -66,7 +66,19 @@ void Character::Update(float deltaTime)
 	// create a new overall steering output
 	SteeringOutput* steering = new SteeringOutput();	// initialized to zero
 
-	steerToSeekPlayer(steering);
+	DecisionTreeNode* action = decisionTree->makeDecision();
+
+	switch ((static_cast<Action*>(action))->getValue())
+	{
+	case ACTION_SET::SEEK:
+		steerToSeekPlayer(steering);
+		break;
+	case ACTION_SET::DO_NOTHING:
+		break;
+
+	default:
+		break;
+	}
 
 	// apply the steering to the equations of motion
 	body->Update(deltaTime, steering);
@@ -137,4 +149,16 @@ void Character::render(float scale)
 
 	SDL_RenderCopyEx(renderer, body->getTexture(), nullptr, &square,
 		orientation, nullptr, SDL_FLIP_NONE);
+}
+
+bool Character::readDecisionTreeFromFile(string file)
+{
+	// Gail is faking it here, not actually reading a file
+	if (file == "blinky")
+	{
+		decisionTree = new Action(ACTION_SET::SEEK);
+		return true;
+	}
+
+	return false;
 }

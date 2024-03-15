@@ -48,6 +48,8 @@
     <ClCompile Include="Seek.cpp">
       <Filter>Steering</Filter>
     </ClCompile>
+    <ClCompile Include="DecisionTreeNode.cpp" />
+    <ClCompile Include="Action.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -95,6 +97,8 @@
     <ClInclude Include="Seek.h">
       <Filter>Steering</Filter>
     </ClInclude>
+    <ClInclude Include="DecisionTreeNode.h" />
+    <ClInclude Include="Action.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">

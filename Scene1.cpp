@@ -74,6 +74,11 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 
+	if (!blinky->readDecisionTreeFromFile("blinky"))
+	{
+		return false;
+	}
+
 	// end of character set ups
 
 	return true;

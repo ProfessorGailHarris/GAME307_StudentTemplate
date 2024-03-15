@@ -7,6 +7,8 @@
 #include "KinematicBody.h"
 #include "Seek.h"
 
+#include "Action.h"
+
 using namespace std;
 
 class Character
@@ -15,6 +17,8 @@ private:
 	class KinematicBody* body;
 	class Scene* scene;
 
+	DecisionTreeNode* decisionTree;
+
 	void steerToSeekPlayer(SteeringOutput* steering);
 
 public:
@@ -22,6 +26,7 @@ public:
 	{
 		body = NULL;
 		scene = NULL;
+		decisionTree = NULL;
 	};
 
 	~Character() {};
@@ -33,6 +38,7 @@ public:
 	void HandleEvents(const SDL_Event& event);
 	void render(float scale = 1.0f);
 
+	bool readDecisionTreeFromFile(string file);
 };
 
 #endif
