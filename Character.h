@@ -10,6 +10,9 @@
 #include "Action.h"
 #include "PlayerInRange.h"
 
+#include "StateMachine.h"	// will include StateMachine, State, and Transition
+#include "Condition.h"
+
 using namespace std;
 
 class Character
@@ -19,6 +22,7 @@ private:
 	class Scene* scene;
 
 	DecisionTreeNode* decisionTree;
+	StateMachine* sm;
 
 	void steerToSeekPlayer(SteeringOutput* steering);
 
@@ -28,6 +32,7 @@ public:
 		body = NULL;
 		scene = NULL;
 		decisionTree = NULL;
+		sm = NULL;
 	};
 
 	~Character() {};
@@ -40,6 +45,7 @@ public:
 	void render(float scale = 1.0f);
 
 	bool readDecisionTreeFromFile(string file);
+	bool readStateMachineFromFile(string file);
 	Vec3 getPos() const { return body->getPos(); }
 	Vec3 getPlayerPos() const { return scene->game->getPlayer()->getPos(); }
 };

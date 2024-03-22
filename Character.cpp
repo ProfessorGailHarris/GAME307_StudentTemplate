@@ -66,18 +66,38 @@ void Character::Update(float deltaTime)
 	// create a new overall steering output
 	SteeringOutput* steering = new SteeringOutput();	// initialized to zero
 
-	DecisionTreeNode* action = decisionTree->makeDecision();
-
-	switch ((static_cast<Action*>(action))->getValue())
+	if (decisionTree)
 	{
-	case ACTION_SET::SEEK:
-		steerToSeekPlayer(steering);
-		break;
-	case ACTION_SET::DO_NOTHING:
-		break;
+		DecisionTreeNode* action = decisionTree->makeDecision();
 
-	default:
-		break;
+		switch ((static_cast<Action*>(action))->getValue())
+		{
+		case ACTION_SET::SEEK:
+			steerToSeekPlayer(steering);
+			break;
+		case ACTION_SET::DO_NOTHING:
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	if (sm)
+	{
+		sm->update();
+		switch (sm->getCurrentStateName())
+		{
+		case STATE::DO_NOTHING:
+			break;
+
+		case STATE::SEEK:
+			steerToSeekPlayer(steering);
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	// apply the steering to the equations of motion
@@ -168,4 +188,31 @@ bool Character::readDecisionTreeFromFile(string file)
 	}
 
 	return false;
+}
+
+bool Character::readStateMachineFromFile(string file)
+{
+	sm = new StateMachine();
+	if (!sm) { return false; }
+
+	State* seekPlayer = new State(STATE::SEEK);
+	State* doNothing = new State(STATE::DO_NOTHING);
+
+	seekPlayer->addTransition(
+		new Transition(
+			new ConditionOutOfRange(this),
+			doNothing
+		)
+	);
+
+	doNothing->addTransition(
+		new Transition(
+			new ConditionInRange(this),
+			seekPlayer
+		)
+	);
+
+	sm->setInitialState(seekPlayer);
+
+	return true;
 }
