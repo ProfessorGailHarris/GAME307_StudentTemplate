@@ -6,10 +6,10 @@
 class Condition
 {
 protected:
-	class Character* owner;
+	class SafeCharacter* owner;
 
 public:
-	Condition(Character* owner_) : owner{ owner_ }
+	Condition(SafeCharacter* owner_) : owner{ owner_ }
 	{}
 
 	virtual bool test() = 0;
@@ -18,7 +18,7 @@ public:
 class ConditionOutOfRange : public Condition
 {
 public:
-	ConditionOutOfRange(Character* owner_) : Condition{ owner_ }
+	ConditionOutOfRange(SafeCharacter* owner_) : Condition{ owner_ }
 	{}
 
 	bool test();
@@ -27,7 +27,7 @@ public:
 class ConditionInRange : public Condition
 {
 public:
-	ConditionInRange(Character* owner_) : Condition{ owner_ }
+	ConditionInRange(SafeCharacter* owner_) : Condition{ owner_ }
 	{}
 
 	bool test();

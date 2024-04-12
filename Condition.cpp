@@ -1,6 +1,6 @@
 #include "Condition.h"
 
-#include "Character.h" // include here, not in .h file, to avoid circular reference
+#include "SafeCharacter.h" // include here, not in .h file, to avoid circular reference
 
 bool ConditionOutOfRange::test()
 {

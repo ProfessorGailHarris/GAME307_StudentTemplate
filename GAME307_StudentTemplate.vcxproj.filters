@@ -54,6 +54,7 @@
     <ClCompile Include="PlayerInRange.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Condition.cpp" />
+    <ClCompile Include="SafeCharacter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
@@ -107,6 +108,7 @@
     <ClInclude Include="PlayerInRange.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Condition.h" />
+    <ClInclude Include="SafeCharacter.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GAME">
