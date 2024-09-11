@@ -6,6 +6,8 @@
 #include "Scene.h"
 #include "Character.h"
 
+#include "StaticBody.h"
+#include "KinematicSeek.h"
 
 using namespace MATH;
 class Scene1 : public Scene {
@@ -16,6 +18,8 @@ private:
 	SDL_Renderer* renderer;
 	Matrix4 projectionMatrix;
     Matrix4     inverseProjection;
+
+	StaticBody* myNPC; // for kinemetic movement
 
 	Character* blinky;
 
@@ -32,6 +36,7 @@ public:
 	SDL_Window* getWindow() { return window; }
     Matrix4 getProjectionMatrix() { return projectionMatrix; }
 	Matrix4 getInverseMatrix() { return inverseProjection; }
+	void renderMyNPC();
 };
 
 #endif
