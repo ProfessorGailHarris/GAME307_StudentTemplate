@@ -97,22 +97,28 @@ void Scene1::Update(const float deltaTime) {
 	steeringAlgorithm = new KinematicSeek(myNPC, game->getPlayer());
 	steering = steeringAlgorithm->getSteering();
 
-	myNPC->Update(deltaTime, steering);
+	//myNPC->Update(deltaTime, steering);
 	 
-	//blinky->Update(deltaTime);
+	blinky->Update(deltaTime);
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
+
+	// memory management
+	if (steeringAlgorithm)
+	{
+		delete steeringAlgorithm;
+	}
 }
 
 void Scene1::Render() {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	SDL_RenderClear(renderer);
 
-	renderMyNPC();
+	//renderMyNPC();
 
 	// render any npc's
-	//blinky->render(0.15f);
+	blinky->render(0.15f);
 
 	// render the player
 	game->RenderPlayer(0.10f);
