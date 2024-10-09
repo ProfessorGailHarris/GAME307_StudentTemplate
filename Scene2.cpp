@@ -13,6 +13,19 @@ Scene2::~Scene2()
 
 bool Scene2::OnCreate()
 {
+	int w, h;
+	SDL_GetWindowSize(window, &w, &h);
+
+	Matrix4 ndc = MMath::viewportNDC(w, h);
+	Matrix4 ortho = MMath::orthographic(0.0f, xAxis, 0.0f, yAxis, 0.0f, 1.0f);
+	projectionMatrix = ndc * ortho;
+
+	/// Turn on the SDL imaging subsystem
+	IMG_Init(IMG_INIT_PNG);
+
+	createTiles();
+
+
 	// let's set up a graph and test it out
 	int count = 5;
 	sceneNodes.resize(count);
@@ -59,6 +72,11 @@ bool Scene2::OnCreate()
     return true;
 }
 
+void Scene2::createTiles()
+{
+	singleTile = new Tile(Vec3(15.0, 7.7f, 0.0f), 3.0f, 3.0f, this);
+}
+
 void Scene2::OnDestroy()
 {
 }
@@ -72,6 +90,7 @@ void Scene2::Render()
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	SDL_RenderClear(renderer);
 
+	singleTile->Render();
 
 	SDL_RenderPresent(renderer);
 }

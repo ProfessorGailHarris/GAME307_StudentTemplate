@@ -7,6 +7,7 @@
 #include "Character.h"
 #include "Graph.h"
 #include "Node.h"
+#include "Tile.h"
 
 using namespace MATH;
 class Scene2 : public Scene {
@@ -20,6 +21,9 @@ private:
 
 	class Graph* graph;
 	std::vector<Node*> sceneNodes;
+
+	Tile* singleTile;
+	void createTiles();
 
 public:
 	Scene2(SDL_Window* sdlWindow_, GameManager* game_);
