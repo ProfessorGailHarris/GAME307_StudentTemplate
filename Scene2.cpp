@@ -36,6 +36,8 @@ bool Scene2::OnCreate()
 		return false;
 	}
 
+	calculateConnectionWeights();
+
 	std::vector<Node*> path = graph->findPath(
 		sceneNodes[0],
 		sceneNodes[4]
@@ -88,6 +90,46 @@ void Scene2::createTiles()
 		j = 0;
 		i++;
 	}
+}
+
+void Scene2::calculateConnectionWeights()
+{
+	// I'm smart enough to only call this 
+	// after having properly created the tiles matrix
+	int rows = tiles.size();
+	int cols = tiles[0].size();
+
+	for (int i=0; i<rows; i++)
+		for (int j = 0; j < cols; j++)
+		{
+			//tiles[i][j]->getNode();
+			//
+			//                 i+1, j
+			//  i,j-1            i, j              i,j+1
+			//                 i-1, j
+			Tile* fromTile = tiles[i][j];
+			Node* from = fromTile->getNode();
+
+			// left
+			if (j >= 1)
+			{
+				Node* to = tiles[i][j - 1]->getNode();
+				graph->addWeightedConnection(from, to, tileWidth);
+			}
+
+			// right
+			
+
+			// above
+			if ((i + 1) < rows)
+			{
+				Node* to = tiles[i + 1][j]->getNode();
+				graph->addWeightedConnection(from, to, tileHeight);
+			}
+
+			// below
+
+		}
 }
 
 void Scene2::OnDestroy()

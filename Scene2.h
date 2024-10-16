@@ -25,6 +25,7 @@ private:
 	float tileWidth, tileHeight;
 	std::vector< std::vector<Tile*> > tiles;
 	void createTiles();
+	void calculateConnectionWeights();
 
 public:
 	Scene2(SDL_Window* sdlWindow_, GameManager* game_);
