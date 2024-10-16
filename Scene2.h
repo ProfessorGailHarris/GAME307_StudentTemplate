@@ -22,7 +22,8 @@ private:
 	class Graph* graph;
 	std::vector<Node*> sceneNodes;
 
-	Tile* singleTile;
+	float tileWidth, tileHeight;
+	std::vector< std::vector<Tile*> > tiles;
 	void createTiles();
 
 public:

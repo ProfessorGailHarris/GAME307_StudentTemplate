@@ -5,6 +5,8 @@ Scene2::Scene2(SDL_Window* sdlWindow_, GameManager* game_)
 	window = sdlWindow_;
 	game = game_;
 	renderer = SDL_GetRenderer(window);
+	tileWidth = 0.0f;
+	tileHeight = 0.0f;
 }
 
 Scene2::~Scene2()
@@ -79,7 +81,41 @@ bool Scene2::OnCreate()
 
 void Scene2::createTiles()
 {
-	singleTile = new Tile(Vec3(15.0, 7.7f, 0.0f), 3.0f, 3.0f, this);
+	tileWidth = 3.0f;
+	tileHeight = 2.0f;
+
+	// resize tiles[][]
+	int cols = ceil((xAxis - 0.5f * tileWidth) / tileWidth);
+	int rows = ceil((yAxis - 0.5f * tileHeight) / tileHeight);
+
+	tiles.resize(rows);
+	for (int i = 0; i < rows; i++)
+	{
+		tiles[i].resize(cols);
+	}
+
+	Tile* t;
+	int i, j;
+
+	i = 0;
+	j = 0;
+
+	for (float y = 0.5f * tileHeight; y < yAxis; y += tileHeight)
+	{
+		// do stuff as y increases
+		for (float x = 0.5f * tileWidth; x < xAxis; x += tileWidth)
+		{
+			//do stuff as x increases
+			// create tile
+			Vec3 tilePos = Vec3(x, y, 0.0f);
+			t = new Tile(tilePos, tileWidth, tileHeight, this);
+			tiles[i][j] = t;
+			// i or j?
+			j++;
+		}
+		j = 0;
+		i++;
+	}
 }
 
 void Scene2::OnDestroy()
@@ -95,7 +131,11 @@ void Scene2::Render()
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	SDL_RenderClear(renderer);
 
-	singleTile->Render();
+	for (int i=0; i < tiles.size(); i++)
+		for (int j = 0; j < tiles[i].size(); j++)
+		{
+			tiles[i][j]->Render();
+		}
 
 	SDL_RenderPresent(renderer);
 }
